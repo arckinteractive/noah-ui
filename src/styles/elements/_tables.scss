@@ -1,0 +1,122 @@
+@import "../global";
+
+.n-data-table {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    flex: 1 0 100%;
+  }
+
+  & > .n-pagination {
+    margin: var(--space-m) auto;
+    text-align: center;
+  }
+
+  table {
+    margin: 0 auto;
+  }
+}
+
+.n-table__wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.n-table {
+  width: 100%;
+  background: #ffffff;
+  border: none;
+  border-radius: var(--radius-default);
+  border-spacing: 0;
+
+  .n-table__th {
+    vertical-align: middle;
+    border-bottom: var(--color-grey-border);
+    color: var(--color-grey-text);
+    text-transform: uppercase;
+    font-weight: var(--weight-bold);
+
+    &.sortable {
+      cursor: pointer;
+    }
+
+    .n-table__column {
+      display: flex;
+    }
+
+    &.centered .n-table__column {
+      justify-content: center;
+    }
+
+    .n-table__column-controls {
+      position: relative;
+      cursor: pointer;
+      margin: 0 var(--space-s);
+      flex: none;
+
+      .n-table__asc,
+      .n-table__desc {
+        position: absolute;
+        font-size: var(--text-s);
+        color: var(--color-grey-text);
+
+        &.active {
+          color: var(--color-primary);
+        }
+      }
+
+      .n-table__asc {
+        top: -2px;
+        left: 0;
+      }
+
+      .n-table__desc {
+        top: 4px;
+      }
+    }
+
+    &.sorted {
+      .n-table__column-label {
+        color: var(--color-primary);
+      }
+
+      .n-table__asc:not(.active),
+      .n-table__desc:not(.active) {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  tr {
+    td, th {
+      font-size: var(--text-s);
+      line-height: normal;
+      vertical-align: middle;
+      word-break: break-word;
+      padding: var(--space-s);
+      border-top: 1px solid var(--color-grey-border);
+      transition: all var(--transition-duration);
+
+      &.centered {
+        text-align: center;
+      }
+
+      &.expanded {
+        padding: 1rem;
+      }
+    }
+  }
+
+  tbody tr {
+    &.odd td {
+      background: n-hsl(var(--hsl-grey-background), 0.3);
+    }
+
+    &:hover td {
+      background: n-hsl(var(--hsl-primary-fade), 0.3);
+    }
+  }
+}

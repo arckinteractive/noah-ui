@@ -1,0 +1,156 @@
+@import "../global";
+
+@keyframes infinite-spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/** FADE */
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-leave,
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-out;
+}
+
+/** EXPAND */
+.expand-enter,
+.expand-leave-to {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+.expand-leave,
+.expand-enter-to {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.expand-enter-active,
+.expand-leave-active {
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/** DROP */
+.drop-enter,
+.drop-leave-to {
+  transform: scaleY(0);
+  opacity: 0;
+  max-height: 0;
+}
+
+.drop-leave,
+.drop-enter-to {
+  transform: scaleY(1);
+  opacity: 1;
+  max-height: none;
+}
+
+.drop-enter-active {
+  transform-origin: top center;
+  transition: transform 0.3s, opacity 0.2s, max-height 0.3s;
+}
+
+.drop-leave-active {
+  transform-origin: top center;
+  transition: transform 0.1s, opacity 0.1s, max-height 0.2s;
+}
+
+/** TAB */
+.tab-enter {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.tab-enter-to {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.tab-leave {
+  display: none;
+}
+
+.tab-enter-active {
+  overflow: hidden;
+  transform-origin: right center;
+  transition: transform 0.2s cubic-bezier(0, 0.35, 0, 1), opacity 0.2s ease-in;
+}
+
+/** SLIDE IN LEFT */
+.slide-in-left-enter {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.slide-in-left-enter-to {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.slide-in-left-leave {
+  display: none;
+}
+
+.slide-in-left-enter-active {
+  transform-origin: right center;
+  transition: transform 0.2s cubic-bezier(0, 0.35, 0, 1), opacity 0.1s;
+}
+
+/** SLIDE IN RIGHT */
+.slide-in-right-enter {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.slide-in-right-enter-to {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.slide-in-right-leave {
+  display: none;
+}
+
+.slide-in-right-enter-active {
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0, 0.35, 0, 1), opacity 0.1s;
+}
+
+
+/** POPUP */
+.popup-enter,
+.popup-leave-to {
+  transform: scaleX(0) scaleY(0);
+  opacity: 0;
+  max-height: 0;
+}
+
+.popup-leave,
+.popup-enter-to {
+  transform: scaleX(1) scaleY(1);
+  opacity: 1;
+  max-height: none;
+}
+
+.popup-enter-active {
+  transform-origin: top center;
+  transition: transform 0.3s, opacity 0.2s, max-height 0.3s;
+}
+
+.popup-leave-active {
+  transform-origin: top center;
+  transition: transform 0.1s, opacity 0.1s, max-height 0.2s;
+}

@@ -1,0 +1,61 @@
+@import "../global";
+
+:root {
+  --message-radius: var(--radius-default);
+  --message-color: var(--color-neutral);
+  --message-color-fade: var(--color-neutral-fade);
+  --message-color-fade-invert: var(--color-neutral-fade-invert);
+}
+
+.n-messages {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 85vw;
+  z-index: 999;
+
+  @media #{$is-tablet-up} {
+    left: auto;
+    max-width: 360px;
+    padding: var(--space-m);
+  }
+
+  .n-message {
+    box-shadow: var(--box-shadow-m);
+  }
+}
+
+.n-message {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  left: 0;
+  transform: none;
+
+  border-radius: var(--message-radius);
+  background: var(--message-color-fade);
+  color: var(--message-color-fade-invert);
+  border-left: solid var(--accent-border-width) var(--message-color);
+
+  @each $name in $palettes {
+    &.color-#{$name} {
+      --message-color: var(--color-#{$name});
+      --message-color-fade: var(--color-#{$name}-fade);
+      --message-color-fade-invert: var(--color-#{$name}-fade-invert);
+    }
+  }
+
+  .n-message__close {
+    display: inline-block;
+    cursor: pointer;
+    min-width: var(--text-l);
+    text-align: center;
+  }
+
+  & + * {
+    margin-top: var(--space-s);
+  }
+}

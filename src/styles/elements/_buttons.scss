@@ -1,0 +1,133 @@
+@import "../global";
+
+:root {
+  --button-font: var(--font-text);
+  --button-text-transform: uppercase;
+  --button-border-width: var(--border-width);
+  --button-radius: var(--radius-default);
+  --button-gradient: linear-gradient(-180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01) 90%);
+  --button-transition: all var(--transition-duration);
+  --button-weight: var(--weight-bold);
+  --button-color: var(--color-neutral);
+  --button-color-darken: var(--color-neutral-darken);
+  --button-color-invert: var(--color-neutral-invert);
+  --button-size: var(--size-m);
+  --button-text: var(--text-m);
+  --button-space: var(--space-m);
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+.n-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: var(--button-text-transform);
+  text-decoration: none !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: middle;
+  line-height: 1;
+
+  transition: var(--button-transition);
+  font-family: var(--button-font);
+  font-weight: var(--weight-button);
+  border: solid var(--button-border-width) var(--button-color);
+  border-radius: var(--button-radius);
+  background-color: var(--button-color);
+  background-image: var(--button-gradient);
+  color: var(--button-color-invert);
+  height: var(--button-size);
+  padding: 0 var(--button-space);
+  font-size: var(--button-text);
+
+  &:hover,
+  &:active {
+    background-color: var(--button-color-darken);
+    border-color: var(--button-color-darken);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: var(--box-shadow-focus) !important;
+    z-index: 1;
+  }
+
+  &.loading {
+    color: transparent;
+    --loader-color: var(--button-color-invert);
+
+    &:after {
+      content: "";
+      position: absolute;
+      @include spinner($size: var(--button-text), $stroke: 2px, $color: var(--loader-color));
+    }
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:not(.loading) {
+      opacity: 0.7;
+    }
+  }
+
+  &.radius-circle {
+    --button-radius: 50%;
+    width: var(--button-size);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @each $name in $palettes {
+    &.color-#{$name} {
+      --button-color: var(--color-#{$name});
+      --button-color-darken: var(--color-#{$name}-darken);
+      --button-color-invert: var(--color-#{$name}-invert);
+    }
+  }
+
+  @each $size, $name in $sizes {
+    &.size-#{$name} {
+      --button-size: var(--size-#{$size});
+      --button-space: var(--space-#{$size});
+      --button-text: var(--text-#{$size});
+    }
+  }
+
+  &.outlined {
+    --button-gradient: none;
+    --loader-color: var(--button-color);
+    background-color: transparent;
+    color: var(--button-color);
+    border-color: var(--button-color);
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: var(--button-color-darken);
+      border-color: var(--button-color-darken);
+    }
+  }
+
+  &.ghost {
+    --button-gradient: none;
+    --loader-color: var(--button-color);
+    background-color: transparent;
+    color: var(--button-color);
+    border-color: transparent;
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: var(--button-color-darken);
+      border-color: transparent;
+    }
+  }
+}

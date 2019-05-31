@@ -1,0 +1,7 @@
+@function n-hsl($hsl, $alpha: 1) {
+  @return unquote("hsla(#{$hsl}, #{$alpha})");
+}
+
+@function color($name, $alpha: 1) {
+  @return unquote("hsla(var(--hsl-#{$name}), #{$alpha})");
+}

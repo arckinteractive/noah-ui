@@ -1,0 +1,278 @@
+@import "./media-queries";
+@import "./sets";
+@import "./mixins";
+
+/**
+  GRID
+  Noah UI uses an 8pt grid system and all element scale accordingly
+**/
+:root {
+  --grid-unit: 8px;
+}
+
+/**
+  COLORS
+  Color bases are defined as HSL using --hsl prefix
+  Colors are defined with --color prefix and convert --hsl vars to actual values with hsl()
+  This allows us to later use different alpha values e.g. n-hsl(var(--hsl-black), 0.5)
+*/
+:root {
+  --hsl-document: 217, 1%, 100%;
+
+  --hsl-white: 217, 0%, 100%;
+  --hsl-black: 217, 7%, 23%;
+
+  --hsl-grey: 217, 7%, 61%;
+  --hsl-grey-lighten: 217, 7%, 71%;
+  --hsl-grey-darken: 217, 7%, 56%;
+  --hsl-grey-text: 217, 7%, 56%;
+  --hsl-grey-fade: 217, 7%, 96%;
+  --hsl-grey-invert: var(--hsl-white);
+
+  --hsl-grey-background: var(--hsl-grey-fade);
+  --hsl-grey-border: 217, 7%, 92%;
+
+  --hsl-neutral: 217, 7%, 43%;
+  --hsl-neutral-lighten: 217, 7%, 48%;
+  --hsl-neutral-darken: 217, 7%, 38%;
+  --hsl-neutral-fade: 217, 7%, 97%;
+  --hsl-neutral-text: 217, 7%, 33%;
+  --hsl-neutral-invert: var(--hsl-white);
+
+  --hsl-black-lighten: 217, 7%, 28%;
+  --hsl-black-darken: 217, 7%, 18%;
+  --hsl-black-fade: 217, 7%, 75%;
+  --hsl-black-text: 217, 7%, 13%;
+  --hsl-black-invert: var(--hsl-white);
+
+  --hsl-primary: 217, 29%, 43%;
+  --hsl-primary-lighten: 217, 29%, 48%;
+  --hsl-primary-darken: 217, 29%, 38%;
+  --hsl-primary-fade: 217, 29%, 95%;
+  --hsl-primary-text: 217, 29%, 33%;
+  --hsl-primary-invert: var(--hsl-white);
+
+  --hsl-secondary: 333, 29%, 41%;
+  --hsl-secondary-lighten: 333, 29%, 46%;
+  --hsl-secondary-darken: 333, 29%, 36%;
+  --hsl-secondary-fade: 333, 29%, 93%;
+  --hsl-secondary-text: 333, 29%, 31%;
+  --hsl-secondary-invert: var(--hsl-white);
+
+  --hsl-danger: 2, 44%, 44%;
+  --hsl-danger-lighten: 2, 44%, 49%;
+  --hsl-danger-darken: 2, 44%, 39%;
+  --hsl-danger-text: 2, 44%, 34%;
+  --hsl-danger-fade: 2, 44%, 95%;
+  --hsl-danger-invert: var(--hsl-white);
+
+  --hsl-warning: 24, 64%, 38%;
+  --hsl-warning-lighten: 24, 64%, 43%;
+  --hsl-warning-darken: 24, 64%, 33%;
+  --hsl-warning-fade: 24, 64%, 94%;
+  --hsl-warning-text: 24, 64%, 28%;
+  --hsl-warning-invert: var(--hsl-white);
+
+  --hsl-success: 146, 34%, 33%;
+  --hsl-success-lighten: 146, 34%, 37%;
+  --hsl-success-darken: 146, 34%, 29%;
+  --hsl-success-fade: 146, 34%, 92%;
+  --hsl-success-text: 146, 34%, 27%;
+  --hsl-success-invert: var(--hsl-white);
+
+  --hsl-notice: 199, 29%, 37%;
+  --hsl-notice-lighten: 199, 29%, 42%;
+  --hsl-notice-darken: 199, 29%, 32%;
+  --hsl-notice-fade: 199, 29%, 89%;
+  --hsl-notice-text: 199, 29%, 27%;
+  --hsl-notice-invert: var(--hsl-white);
+
+  --color-grey: hsl(var(--hsl-grey));
+  --color-grey-lighten: hsl(var(--hsl-grey-lighten));
+  --color-grey-darken: hsl(var(--hsl-grey-darken));
+  --color-grey-text: hsl(var(--hsl-grey-text));
+  --color-grey-fade: hsl(var(--hsl-grey-fade));
+  --color-grey-invert: hsl(var(--hsl-grey-invert));
+  --color-grey-fade-invert: hsl(var(--hsl-black-text));
+
+  --color-grey-background: hsl(var(--hsl-grey-background));
+  --color-grey-border: hsl(var(--hsl-grey-border));
+  --color-document: hsl(var(--hsl-document));
+
+  --color-neutral: hsl(var(--hsl-neutral));
+  --color-neutral-lighten: hsl(var(--hsl-neutral-lighten));
+  --color-neutral-darken: hsl(var(--hsl-neutral-darken));
+  --color-neutral-fade: hsl(var(--hsl-neutral-fade));
+  --color-neutral-text: hsl(var(--hsl-neutral-text));
+  --color-neutral-invert: hsl(var(--hsl-neutral-invert));
+  --color-neutral-fade-invert: hsl(var(--hsl-neutral-text));
+
+  --color-black: hsl(var(--hsl-black));
+  --color-black-lighten: hsl(var(--hsl-black-lighten));
+  --color-black-darken: hsl(var(--hsl-black-darken));
+  --color-black-fade: hsl(var(--hsl-black-fade));
+  --color-black-text: hsl(var(--hsl-black-text));
+  --color-black-invert: hsl(var(--hsl-black-invert));
+  --color-black-fade-invert: hsl(--hs-white);
+
+  --color-white: hsl(var(--hsl-white));
+  --color-white-lighten: hsl(var(--hsl-white));
+  --color-white-darken: hsl(var(--hsl-grey-background));
+  --color-white-fade: hsl(var(--hsl-white));
+  --color-white-text: hsl(var(--hsl-white));
+  --color-white-invert: hsl(var(--hsl-black));
+  --color-white-fade-invert: hsl(var(--hsl-black));
+
+  --color-primary: hsl(var(--hsl-primary));
+  --color-primary-lighten: hsl(var(--hsl-primary-lighten));
+  --color-primary-darken: hsl(var(--hsl-primary-darken));
+  --color-primary-fade: hsl(var(--hsl-primary-fade));
+  --color-primary-text: hsl(var(--hsl-primary-text));
+  --color-primary-invert: hsl(var(--hsl-primary-invert));
+  --color-primary-fade-invert: hsl(var(--hsl-primary-text));
+
+  --color-secondary: hsl(var(--hsl-secondary));
+  --color-secondary-lighten: hsl(var(--hsl-secondary-lighten));
+  --color-secondary-darken: hsl(var(--hsl-secondary-darken));
+  --color-secondary-fade: hsl(var(--hsl-secondary-fade));
+  --color-secondary-text: hsl(var(--hsl-secondary-text));
+  --color-secondary-invert: hsl(var(--hsl-secondary-invert));
+  --color-secondary-fade-invert: hsl(var(--hsl-secondary-text));
+
+  --color-danger: hsl(var(--hsl-danger));
+  --color-danger-lighten: hsl(var(--hsl-danger-lighten));
+  --color-danger-darken: hsl(var(--hsl-danger-darken));
+  --color-danger-text: hsl(var(--hsl-danger-text));
+  --color-danger-fade: hsl(var(--hsl-danger-fade));
+  --color-danger-invert: hsl(var(--hsl-danger-invert));
+  --color-danger-fade-invert: hsl(var(--hsl-danger-text));
+
+  --color-warning: hsl(var(--hsl-warning));
+  --color-warning-lighten: hsl(var(--hsl-warning-lighten));
+  --color-warning-darken: hsl(var(--hsl-warning-darken));
+  --color-warning-fade: hsl(var(--hsl-warning-fade));
+  --color-warning-text: hsl(var(--hsl-warning-text));
+  --color-warning-invert: hsl(var(--hsl-warning-invert));
+  --color-warning-fade-invert: hsl(var(--hsl-warning-text));
+
+  --color-success: hsl(var(--hsl-success));
+  --color-success-lighten: hsl(var(--hsl-success-lighten));
+  --color-success-darken: hsl(var(--hsl-success-darken));
+  --color-success-fade: hsl(var(--hsl-success-fade));
+  --color-success-text: hsl(var(--hsl-success-text));
+  --color-success-invert: hsl(var(--hsl-success-invert));
+  --color-success-fade-invert: hsl(var(--hsl-success-text));
+
+  --color-notice: hsl(var(--hsl-notice));
+  --color-notice-lighten: hsl(var(--hsl-notice-lighten));
+  --color-notice-darken: hsl(var(--hsl-notice-darken));
+  --color-notice-fade: hsl(var(--hsl-notice-fade));
+  --color-notice-text: hsl(var(--hsl-notice-text));
+  --color-notice-invert: hsl(var(--hsl-notice-invert));
+  --color-notice-fade-invert: hsl(var(--hsl-notice-text));
+}
+
+/** FONTS **/
+:root {
+  --font-heading: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --weight-black: 700;
+  --weight-bold: 500;
+  --weight-normal: 400;
+  --weight-light: 400;
+
+  --weight-heading: 600;
+
+  --text-base: calc(var(--grid-unit) * 2);
+
+  --line-height-body: 1.5;
+  --line-height-heading: 1.25;
+
+  --h1: calc(var(--h2) + var(--grid-unit) / 2);
+  --h2: calc(var(--h3) + var(--grid-unit) / 2);
+  --h3: calc(var(--h4) + var(--grid-unit) / 2);
+  --h4: var(--text-xxl);
+  --h5: var(--text-xl);
+  --h6: var(--text-l);
+
+  --text-xxl: calc(var(--text-xl) + calc(var(--grid-unit) / 2));
+  --text-xl: calc(var(--text-l) + calc(var(--grid-unit) / 2));
+  --text-l: calc(var(--text-m) + calc(var(--grid-unit) / 2));
+  --text-m: var(--text-base);
+  --text-s: calc(var(--text-m) - calc(var(--grid-unit) / 2));
+  --text-xs: calc(var(--text-s) - calc(var(--grid-unit) / 4));
+  --text-none: 0;
+}
+
+/** SPACING **/
+:root {
+  --space-base: calc(var(--grid-unit) * 2);
+  --space-scale-ratio: 2;
+
+  --space-xxl: calc(var(--space-xl) + calc(var(--grid-unit) * 2));
+  --space-xl: calc(var(--space-l) + calc(var(--grid-unit) * 2));
+  --space-l: calc(var(--space-m) + var(--grid-unit));
+  --space-m: var(--space-base);
+  --space-s: calc(var(--space-m) / 2);
+  --space-xs: calc(var(--space-s) / 2);
+  --space-none: 0px;
+}
+
+/** FORMS **/
+:root {
+  --border-width: 1px;
+  --accent-border-width: 3px;
+
+  --size-base: calc(var(--grid-unit) * 4 + 4px);
+
+  --size-xxl: calc(var(--size-xl) + var(--grid-unit));
+  --size-xl: calc(var(--size-l) + var(--grid-unit));
+  --size-l: calc(var(--size-m) + var(--grid-unit));
+  --size-m: var(--size-base);
+  --size-s: calc(var(--size-m) - var(--grid-unit));
+  --size-xs: calc(var(--size-s) - calc(var(--grid-unit) / 2));
+  --size-none: 0px;
+}
+
+/** MISCELLANEOUS **/
+:root {
+  --transition-duration: 0.3s;
+
+  --breakpoint-desktop: #{$breakpoint-desktop};
+  --breakpoint-hd: #{$breakpoint-hd};
+  --breakpoint-tablet: #{$breakpoint-tablet};
+  --breakpoint-mobile: #{$breakpoint-mobile};
+
+  --radius-default: 2px;
+
+  --box-shadow-s: 0 0px 4px 0 rgba(0, 0, 0, .08), 0 2px 8px 0 rgba(0, 0, 0, .06);
+  --box-shadow-m: 0 2px 4px 0 rgba(34, 36, 38, .12), 0 2px 10px 0 rgba(34, 36, 38, .15);
+  --box-shadow-focus: 0 0 0 3px hsla(var(--hsl-primary), 0.2);
+
+  --dialog-xs: 400px;
+  --dialog-s: 480px;
+  --dialog-m: 560px;
+  --dialog-l: 640px;
+  --dialog-xl: 720px;
+  --dialog-xxl: 800px;
+
+  --popup-xs: 240px;
+  --popup-s: 320px;
+  --popup-m: 480px;
+  --popup-l: 560px;
+  --popup-xl: 640px;
+  --popup-xxl: 720px;
+
+  --hero-xs: 20vh;
+  --hero-s: 40vh;
+  --hero-m: 60vh;
+  --hero-l: 80vh;
+  --hero-xl: 90vh;
+  --hero-xxl: 100vh;
+
+  --scrollbar-width: calc(var(--grid-unit) * 1.2);
+  --scrollbar-radius: var(--scrollbar-width);
+  --scrollbar-thumb-color: var(--color-neutral);
+}

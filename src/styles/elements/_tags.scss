@@ -1,0 +1,79 @@
+@import "../global";
+
+:root {
+  --tag-scale-ratio: 1;
+  --tag-transition: all var(--transition-duration);
+  --tag-size: calc(var(--size-m) * var(--tag-scale-ratio));
+  --tag-text: calc(var(--text-m) * var(--tag-scale-ratio));
+  --tag-space: calc(calc(var(--tag-size) - var(--tag-text)) / 2);
+  --tag-color: var(--color-neutral);
+  --tag-color-fade: var(--color-neutral-fade);
+  --tag-color-fade-invert: var(--color-neutral-fade-invert);
+}
+
+.n-tag {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: var(--tag-transition);
+  font-size: var(--tag-text);
+  font-weight: var(--weight-bold);
+  border-radius: calc(var(--tag-size) / 2);
+  height: var(--tag-size);
+  line-height: var(--tag-size);
+  min-width: var(--tag-size);
+  text-align: center;
+  background: var(--tag-color-fade);
+  color: var(--tag-color-fade-invert);
+  border: 1px solid var(--tag-color);
+
+  @each $name in $palettes {
+    &.color-#{$name} {
+      --tag-color: var(--color-#{$name});
+      --tag-color-fade: var(--color-#{$name}-fade);
+      --tag-color-fade-invert: var(--color-#{$name}-fade-invert);
+    }
+  }
+
+  @each $size, $name in $sizes {
+    &.size-#{$name} {
+      --tag-size: calc(var(--size-#{$size}) * var(--tag-scale-ratio));
+      --tag-text: calc(var(--text-#{$size}) * var(--tag-scale-ratio));
+    }
+  }
+
+  .n-button {
+    --button-size: calc(var(--tag-size) - 2px);
+    --button-text: var(--tag-text);
+    margin-right: 1px;
+    border-radius: 0 50% 50% 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:hover,
+    &:focus {
+      box-shadow: none !important;
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+  }
+
+  .n-media {
+    border: none;
+    box-shadow: none;
+  }
+
+  .n-tag__content {
+    margin: 0 var(--tag-space);
+  }
+
+  .n-tag__icon {
+    border-radius: 50%;
+    width: var(--tag-size);
+    height: var(--tag-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    margin: 0 0 0 -2px;
+  }
+}

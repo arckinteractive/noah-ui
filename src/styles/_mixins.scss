@@ -1,0 +1,71 @@
+@import './media-queries';
+
+@mixin current-color($name) {
+  --current-color: var(--color-#{$name});
+  --current-color-fade: var(--color-#{$name}-fade);
+  --current-color-darken: var(--color-#{$name}-darken);
+  --current-color-lighten: var(--color-#{$name}-lighten);
+  --current-color-text: var(--color-#{$name}-text);
+  --current-color-invert: var(--color-#{$name}-invert);
+  --current-color-fade-invert: var(--color-#{$name}-fade-invert);
+}
+
+@mixin current-size($size) {
+  --current-size: var(--size-#{$size});
+  --current-text: var(--text-#{$size});
+  --current-space: var(--space-#{$size});
+}
+
+@mixin responsive($selector, $parent: '') {
+  #{$parent}.#{$selector},
+  #{$parent}.sm\:#{$selector} {
+    @content;
+  }
+
+  @media #{$is-tablet-up} {
+    #{$parent}.md\:#{$selector} {
+      @content;
+    }
+  }
+
+  @media #{$is-desktop-up} {
+    #{$parent}.lg\:#{$selector} {
+      @content;
+    }
+  }
+
+  @media #{$is-hd-up} {
+    #{$parent}.xl\:#{$selector} {
+      @content;
+    }
+  }
+}
+
+
+/// To be used to render a spinner
+@mixin spinner($size: var(--space-m), $stroke: 3px, $color: var(--color-black)) {
+  background-color: transparent;
+  height: $size;
+  width: $size;
+  animation: infinite-spinning 1s infinite linear;
+  border-radius: 50%;
+  border-width: $stroke;
+  border-color: transparent $color $color;
+  border-style: solid;
+  display: block;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}

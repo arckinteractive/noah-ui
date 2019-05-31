@@ -1,0 +1,233 @@
+@import "../global";
+
+@mixin flex-basis($i) {
+  flex-basis: calc((100% / 12) * #{$i} - var(--flex-gap) * 2);
+  max-width: calc((100% / 12) * #{$i} - var(--flex-gap) * 2);
+  margin: var(--flex-gap);
+}
+
+/**
+  FLEX
+ */
+.n-flex {
+  --flex-gap: var(--grid-unit);
+  --flex-wrap: wrap;
+  --flex-direction: row;
+  --flex-justify: flex-start;
+  --flex-align: flex-start;
+
+  width: calc(100% + calc(2 * var(--flex-gap))) !important;
+  margin: calc(-1 * var(--flex-gap)) !important;
+
+  display: flex;
+  justify-content: var(--flex-justify);
+  align-items: var(--flex-align);
+  flex-wrap: var(--flex-wrap);
+  flex-direction: var(--flex-direction);
+
+  & > * {
+    position: relative;
+
+    &:not(.n-flex) {
+      margin: var(--flex-gap);
+    }
+
+    &.n-flex {
+      margin: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  .flex-stacked {
+    &.flex-stretched > * {
+      width: calc(100% - var(--flex-gap) * 2);
+    }
+
+    &.flex-divided > *:not(:first-child):not(:only-child):before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 0;
+      display: block;
+      margin-top: calc(-1 * var(--flex-gap));
+      border-top: var(--border-width) solid var(--color-grey-border);
+    }
+  }
+
+  &:not(.flex-stacked) {
+    &.flex-divided > *:not(:first-child):not(:only-child):before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 0;
+      height: 100%;
+      display: block;
+      margin-left: calc(-1 * var(--flex-gap));
+      border-left: var(--border-width) solid var(--color-grey-border);
+    }
+  }
+}
+
+@include responsive(flex-unwrapped, '.n-flex') {
+  --flex-wrap: nowrap;
+}
+
+@each $size, $name in $sizes {
+  @include responsive(flex-gap-#{$name}, '.n-flex') {
+    --flex-gap: calc(var(--space-#{$size}) / 2);
+  }
+}
+
+@each $f-hz-name, $f-hz in $flexHz {
+  @each $f-vt-name, $f-vt in $flexVt {
+    @include responsive (flex-gravity-#{$f-hz-name}-#{$f-vt-name}, '.n-flex') {
+      --flex-justify: #{$f-hz};
+      --flex-align: #{$f-vt};
+    }
+
+    @include responsive (flex-gravity-#{$f-hz-name}-#{$f-vt-name}, '.n-flex.n-stacked') {
+      --flex-justify: #{$f-vt};
+      --flex-align: #{$f-hz};
+    }
+  }
+}
+
+@include responsive(flex-stretched, '.n-flex') {
+  --flex-align: stretch;
+}
+
+@include responsive(flex-stacked, '.n-flex') {
+  --flex-direction: column;
+}
+
+/**
+  COLUMNS / SPANS
+  Columns don't follow the common convention
+  Just sticking to commonly used Bootstrap pattern
+ */
+
+[class*="col-"] {
+  flex-shrink: 0;
+  flex-grow: 0;
+  @include flex-basis(12);
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    @include flex-basis($i);
+  }
+
+  .col-narrow {
+    flex: none;
+  }
+
+  .col-auto {
+    flex: 1 1 auto;
+  }
+
+  .col-none {
+    display: none;
+  }
+}
+
+@media #{$is-mobile-up} {
+  @for $i from 1 through 12 {
+    .sm\:col-#{$i} {
+      @include flex-basis($i);
+    }
+  }
+
+  .sm\:col-narrow {
+    flex: none;
+  }
+
+  .sm\:col-auto {
+    flex: 1 1 auto;
+  }
+
+  .sm\:col-none {
+    display: none;
+  }
+}
+
+@media #{$is-tablet-up} {
+  @for $i from 1 through 12 {
+    .md\:col-#{$i} {
+      @include flex-basis($i);
+    }
+  }
+
+  .md\:col-narrow {
+    flex: none;
+  }
+
+  .md\:col-auto {
+    flex: 1 1 auto;
+  }
+
+  .md\:col-none {
+    display: none;
+  }
+}
+
+@media #{$is-desktop-up} {
+  @for $i from 1 through 12 {
+    .lg\:col-#{$i} {
+      @include flex-basis($i);
+    }
+  }
+
+  .lg\:col-narrow {
+    flex: none;
+  }
+
+  .lg\:col-auto {
+    flex: 1 1 auto;
+  }
+
+  .lg\:col-none {
+    display: none;
+  }
+}
+
+@media #{$is-hd-up} {
+  @for $i from 1 through 12 {
+    .xl\:col-#{$i} {
+      @include flex-basis($i);
+    }
+  }
+
+  .xl\:col-narrow {
+    flex: none;
+  }
+
+  .xl\:col-auto {
+    flex: 1 1 auto;
+  }
+
+  .xl\:col-none {
+    display: none;
+  }
+}
+
+
+/**
+  CONTAINER
+*/
+.n-container {
+  --container-space: var(--space-m);
+
+  max-width: $breakpoint-desktop;
+  padding: 0 var(--container-space);
+
+  &:not(.n-flex) {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media #{$is-desktop-up} {
+    --container-space: 0;
+  }
+}

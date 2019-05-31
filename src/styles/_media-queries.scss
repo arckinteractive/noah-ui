@@ -1,0 +1,22 @@
+/** MEDIA QUERIES **/
+$breakpoint-mobile: 640px !default;
+$breakpoint-tablet: 960px !default;
+$breakpoint-desktop: 1280px !default;
+$breakpoint-hd: 1920px !default;
+
+$is-mobile-down: "(max-width: #{$breakpoint-tablet})";
+$is-mobile-only: "(max-width: #{$breakpoint-tablet})";
+$is-mobile-up: "(min-width: 0px)";
+
+$is-tablet-down: "(max-width: #{$breakpoint-desktop})";
+$is-tablet-only: "(min-width: #{$breakpoint-tablet + 1px}) and (max-width: #{$breakpoint-desktop})";
+$is-tablet-up: "(min-width: #{$breakpoint-tablet + 1px})";
+
+$is-desktop-down: "(max-width: #{$breakpoint-hd})";
+$is-desktop-only: "(min-width: #{$breakpoint-desktop + 1px}) and (max-width: #{$breakpoint-hd})";
+$is-desktop-up: "(min-width: #{$breakpoint-desktop + 1px})";
+
+$is-hd-down: "(max-width: 100%)";
+$is-hd-only: "(min-width: #{$breakpoint-hd + 1px})";
+$is-hd-up: "(min-width: #{$breakpoint-hd + 1px})";
+

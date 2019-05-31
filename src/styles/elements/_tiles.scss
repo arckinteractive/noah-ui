@@ -1,0 +1,61 @@
+@import "../global";
+
+:root {
+  --tile-space: var(--space-m);
+  --tile-text: var(--text-m);
+  --tile-size: var(--size-m);
+  --tile-color-fade: var(--color-grey-background);
+}
+
+.n-tile {
+  line-height: normal;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  transition: all var(--transition-duration);
+
+  padding: calc(var(--tile-space) / 2);
+  min-height: calc(var(--tile-size) + var(--tile-space));
+  font-size: var(--tile-text);
+
+  @each $size, $name in $sizes {
+    &.size-#{$name} {
+      --tile-size: var(--size-#{$size});
+      --tile-space: var(--space-#{$size});
+    }
+  }
+
+  & > * {
+    padding: 0 calc(var(--tile-space) / 2);
+  }
+
+  &:hover,
+  &.hover {
+    text-decoration: none;
+  }
+
+  &:not([tabindex="-1"]):focus {
+    outline: none;
+    background-color: var(--tile-color-fade);
+  }
+
+  .n-tile__meta + * {
+    margin-left: auto;
+  }
+
+  .n-tile__icon,
+  .n-tile__control {
+    flex: none;
+    text-align: center;
+    padding: 0;
+    min-width: var(--tile-size);
+  }
+
+  .n-tile__actions {
+    margin-left: auto;
+    padding: 0;
+  }
+}
+

@@ -1,0 +1,15 @@
+---
+label: Badge
+---
+
+## Badges
+
+<ComponentMeta name="NBadge" />
+
+### Colored Badges
+
+<ComponentDemo name="ColoredBadges" />
+
+### Badge Sizes
+
+<ComponentDemo name="BadgeSizes" />

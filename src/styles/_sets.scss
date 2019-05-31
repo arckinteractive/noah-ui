@@ -1,0 +1,53 @@
+$palettes: (
+        neutral,
+        primary,
+        secondary,
+        danger,
+        warning,
+        success,
+        notice,
+        black,
+        white,
+        grey,
+);
+
+$sizes: (
+        none: 'none',
+        xs: 'xsmall',
+        s: 'small',
+        m: 'medium',
+        l: 'large',
+        xl: 'xlarge',
+        xxl: 'xxlarge',
+);
+
+$edges: (
+        t: top,
+        r: right,
+        b: bottom,
+        l: left,
+);
+
+$flexVt: (
+        top: 'flex-start',
+        center: 'center',
+        bottom: 'flex-end',
+);
+
+$flexHz: (
+        left: 'flex-start',
+        center: 'center',
+        right: 'flex-end',
+);
+
+$positionVt: (
+        top: '0%',
+        center: '50%',
+        bottom: '100%',
+);
+
+$positionHz: (
+        left: '0%',
+        center: '50%',
+        right: '100%',
+);

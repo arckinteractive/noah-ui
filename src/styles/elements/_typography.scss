@@ -1,0 +1,103 @@
+@import "../global";
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p {
+  margin: 0;
+
+  & + & {
+    margin-top: var(--space-m);
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+.n-h1, .n-h2, .n-h3, .n-h4, .n-h5, .n-h6,
+.n-heading {
+  --heading-text: var(--text-xxxl);
+
+  font-family: var(--font-heading);
+  font-weight: var(--weight-normal);
+  font-size: var(--heading-text);
+  line-height: var(--line-height-heading);
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-s);
+
+  &.unspaced {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+h1, .n-h1 {
+  --heading-text: var(--h1);
+}
+
+h2, .n-h2 {
+  --heading-text: var(--h2);
+}
+
+h3, .n-h3 {
+  --heading-text: var(--h3);
+}
+
+h4, .n-h4 {
+  --heading-text: var(--h4);
+}
+
+h5, .n-h5 {
+  --heading-text: var(--h5);
+}
+
+h6, .n-h6 {
+  --heading-text: var(--h6);
+}
+
+label, .n-label,
+b, strong, .n-strong {
+  font-weight: var(--weight-bold);
+}
+
+.n-help {
+  font-size: var(--text-s);
+  font-weight: var(--weight-light);
+  color: var(--color-black-lighten);
+}
+
+.n-uppercase {
+  text-transform: uppercase;
+}
+
+.n-lowercase {
+  text-transform: lowercase;
+}
+
+.n-highlight {
+  --highlight-color: var(--color-primary-fade);
+
+  @each $name in $palettes {
+    &.color-#{$name} {
+      --highlight-color: var(--color-#{$name}-fade);
+    }
+  }
+
+  span {
+    display: inline;
+    white-space: pre-wrap;
+  }
+}
+
+.n-highlight__match {
+  background-color: var(--highlight-color);
+  font-weight: bold;
+}
+
+.n-code {
+  font-family: var(--font-monospace);
+}

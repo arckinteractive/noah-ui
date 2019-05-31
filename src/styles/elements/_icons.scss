@@ -1,0 +1,9 @@
+@import "../global";
+
+.n-icon.prefix:not(:only-child) {
+  margin-right: 0.5em;
+}
+
+.n-icon.suffix:not(:only-child) {
+  margin-left: 0.5em;
+}

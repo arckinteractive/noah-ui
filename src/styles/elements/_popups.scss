@@ -1,0 +1,104 @@
+@import "../global";
+
+:root {
+  --popup-radius: var(--radius-default);
+  --popup-width: var(--popup-m);
+  --popup-bg-color: var(--color-white);
+}
+
+.n-popup {
+  position: absolute;
+  background: var(--popup-bg-color);
+  min-width: 160px;
+  max-width: 85vw;
+  width: var(--popup-width);
+  border-radius: var(--popup-radius);
+  box-shadow: var(--box-shadow-m);
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+
+  @each $size, $name in $sizes {
+    &.size-#{$name} {
+      --popup-width: var(--popup-#{$size});
+    }
+  }
+
+  &.size-auto {
+    --popup-width: auto;
+  }
+
+  &.tooltip {
+    width: auto;
+    padding: var(--space-s) var(--space-m);
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: calc(var(--grid-unit) * 2);
+    box-shadow: var(--box-shadow-s);
+    font-size: var(--text-s);
+    text-align: center;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.n-popup[x-placement="top"] {
+  margin-bottom: var(--space-s);
+  transform-origin: bottom;
+}
+
+.n-popup[x-placement="top-start"] {
+  margin-bottom: var(--space-s);
+  transform-origin: bottom right;
+}
+
+.n-popup[x-placement="top-end"] {
+  margin-bottom: var(--space-s);
+  transform-origin: bottom left;
+}
+
+.n-popup[x-placement="bottom"] {
+  margin-top: var(--space-s);
+  transform-origin: top;
+}
+
+.n-popup[x-placement="bottom-start"] {
+  margin-top: var(--space-s);
+  transform-origin: top right;
+}
+
+.n-popup[x-placement="bottom-end"] {
+  margin-top: var(--space-s);
+  transform-origin: top left;
+}
+
+.n-popup[x-placement="right"] {
+  margin-left: var(--space-s);
+  transform-origin: left;
+}
+
+.n-popup[x-placement="right-start"] {
+  margin-left: var(--space-s);
+  transform-origin: top left;
+}
+
+.n-popup[x-placement="right-end"] {
+  margin-left: var(--space-s);
+  transform-origin: bottom left;
+}
+
+.n-popup[x-placement="left"] {
+  margin-right: var(--space-s);
+  transform-origin: right;
+}
+
+.n-popup[x-placement="left-start"] {
+  margin-right: var(--space-s);
+  transform-origin: top right;
+}
+
+.n-popup[x-placement="left-end"] {
+  margin-right: var(--space-s);
+  transform-origin: bottom right;
+}

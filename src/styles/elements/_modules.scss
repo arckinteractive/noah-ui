@@ -1,0 +1,29 @@
+@import "../global";
+
+.n-module {
+  color: var(--color-black-text);
+  border-radius: var(--radius-default);
+
+  .n-module__header {
+    border-radius: var(--radius-default) var(--radius-default) 0 0;
+  }
+
+  .n-module__footer {
+    border-radius: 0 0 var(--radius-default) var(--radius-default);
+  }
+
+  &.card {
+    background: var(--color-white);
+    box-shadow: var(--box-shadow-s);
+
+    .n-module__header + .n-module__content {
+      border-top: 3px solid var(--color-grey-border);
+    }
+
+    .n-module__media {
+      .n-media {
+        border-radius: 0;
+      }
+    }
+  }
+}

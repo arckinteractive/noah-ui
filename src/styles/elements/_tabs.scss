@@ -1,0 +1,40 @@
+@import "../global";
+
+.n-tabs {
+  .n-tabs__nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    align-items: flex-end;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: var(--color-grey-border);
+      z-index: 1;
+    }
+
+    .n-menu-item {
+      border: none;
+      position: relative;
+      border-bottom: 3px solid transparent;
+      z-index: 2;
+
+      &.selected {
+        border-bottom-color: var(--color-primary);
+      }
+
+      &:hover {
+        border-bottom-color: n-hsl(var(--hsl-primary), 0.5);
+      }
+    }
+  }
+
+  .n-tabs__content {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}

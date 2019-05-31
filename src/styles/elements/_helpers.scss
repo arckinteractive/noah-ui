@@ -1,0 +1,103 @@
+@import "../global";
+
+@each $s, $size in $sizes {
+  @include responsive(text-#{$size}) {
+    font-size: var(--text-#{$s});
+  }
+
+  @include responsive(p-#{$size}) {
+    padding: var(--space-#{$s});
+  }
+
+  @include responsive(px-#{$size}) {
+    padding-left: var(--space-#{$s});
+    padding-right: var(--space-#{$s});
+  }
+
+  @include responsive(py-#{$size}) {
+    padding-top: var(--space-#{$s});
+    padding-bottom: var(--space-#{$s});
+  }
+
+  @include responsive(m-#{$size}) {
+    padding: var(--space-#{$s});
+  }
+
+  @include responsive(mx-#{$size}) {
+    margin-left: var(--space-#{$s});
+    margin-right: var(--space-#{$s});
+  }
+
+  @include responsive(my-#{$size}) {
+    margin-top: var(--space-#{$s});
+    margin-bottom: var(--space-#{$s});
+  }
+
+  @each $e, $edge in $edges {
+    @include responsive(p#{$e}-#{$size}) {
+      padding-#{$edge}: var(--space-#{$s});
+    }
+
+    @include responsive(m#{$e}-#{$size}) {
+      margin-#{$edge}: var(--space-#{$s});
+    }
+  }
+}
+
+@include responsive(m-auto) {
+  margin: auto;
+}
+
+@include responsive(mx-auto) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@include responsive(my-auto) {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@each $e, $edge in $edges {
+  @include responsive(m#{$e}-auto) {
+    margin-#{$edge}: auto;
+  }
+}
+
+@each $name in $palettes {
+  .bg-#{$name} {
+    background-color: var(--color-#{$name});
+  }
+
+  .bg-#{$name}-fade {
+    background-color: var(--color-#{$name}-fade);
+  }
+
+  .bg-#{$name}-invert {
+    background-color: var(--color-#{$name}-invert);
+  }
+
+  .text-#{$name} {
+    color: var(--color-#{$name});
+  }
+
+  .text-#{$name}-fade {
+    color: var(--color-#{$name}-fade);
+  }
+
+  .text-#{$name}-invert {
+    color: var(--color-#{$name}-invert);
+  }
+}
+
+@include responsive(align-left) {
+  text-align: left;
+}
+
+@include responsive(align-center) {
+  text-align: center;
+}
+
+@include responsive(align-right) {
+  text-align: right;
+}

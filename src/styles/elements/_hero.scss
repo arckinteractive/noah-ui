@@ -1,0 +1,77 @@
+@import "../global";
+
+:root {
+  --hero-gradient: linear-gradient(-45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01) 90%);
+}
+
+.n-hero {
+  --hero-color: var(--color-white);
+  --hero-color-invert: var(--color-white-invert);
+  --hero-height: 0px;
+  --hero-space: var(--space-m);
+  --hero-justify: center;
+  --hero-align: center;
+  --hero-overlay-color: transparent;
+  --hero-overlay-opacity: 0.4;
+
+  position: relative;
+  background-color: var(--hero-color);
+  background-image: var(--hero-gradient);
+  color: var(--hero-color-invert);
+  min-height: var(--hero-height);
+  width: 100% !important;
+  margin: 0 !important;
+  padding: var(--hero-space);
+
+  @each $size, $name in $sizes {
+    &.size-#{$name} {
+      --hero-height: var(--hero-#{$size});
+      --hero-size: var(--size-#{$size});
+      --hero-text: var(--text-#{$size});
+    }
+  }
+
+  @each $name in $palettes {
+    &.color-#{$name} {
+      --hero-color: var(--color-#{$name});
+      --hero-color-fade: var(--color-#{$name}-fade);
+      --hero-color-invert: var(--color-#{$name}-invert);
+      --hero-color-fade-invert: var(--color-#{$name}-fade-invert);
+    }
+  }
+
+  &.faded {
+    background-color: var(--hero-color-fade);
+    color: var(--hero-color-fade-invert);
+  }
+
+  .n-hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+
+    .n-media {
+      border-radius: 0;
+    }
+  }
+
+  .n-hero__overlay {
+    position: absolute;
+    background-color: var(--hero-overlay-color);
+    opacity: var(--hero-overlay-opacity);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+
+    @each $name in $palettes {
+      &.color-#{$name} {
+        --hero-overlay-color: var(--color-#{$name});
+      }
+    }
+  }
+}
