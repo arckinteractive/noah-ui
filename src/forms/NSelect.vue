@@ -272,15 +272,18 @@ export default {
         async resolveOptions () {
             if (Array.isArray(this.options)) {
                 this.internalOptions = this.options;
+
                 return;
             }
-            
+
             this.awaiting = true;
             this.internalOptions = [];
 
             return Promise.resolve(this.options(this.searchKeyword)).then((options) => {
                 this.internalOptions = options;
                 this.awaiting = false;
+                
+                return options;
             }).catch(this.$log);
         },
 
