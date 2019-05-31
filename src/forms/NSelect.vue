@@ -93,7 +93,10 @@
                             ref="suggestions"
                         >
                             <n-list v-if="filteredOptions.length" divided>
-                                <n-div v-for="option in filteredOptions" :key="`suggestion-${option[labelProp]}-${option[valueProp]}`">
+                                <n-div
+                                    v-for="option in filteredOptions"
+                                    :key="`suggestion-${option[labelProp]}-${option[valueProp]}`"
+                                >
                                     <template v-if="multiple">
                                         <n-checkbox
                                             v-model="internalValue"
@@ -244,7 +247,7 @@ export default {
 
         filteredOptions () {
             if (typeof this.options === 'function') {
-                return this.internalOptions.splice(0);
+                return [...this.internalOptions];
             }
 
             return this.internalOptions.filter((e) => {
@@ -263,25 +266,22 @@ export default {
         canAddValue () {
             return this.$listeners.add;
         },
-
-        async addValue () {
-            this.$listeners.add(this.searchKeyword);
-        },
     },
 
     methods: {
         async resolveOptions () {
             if (Array.isArray(this.options)) {
                 this.internalOptions = this.options;
-            } else {
-                this.awaiting = true;
-                this.internalOptions = [];
-
-                return Promise.resolve(this.options(this.searchKeyword)).then((options) => {
-                    this.internalOptions = options;
-                    this.awaiting = false;
-                }).catch(this.$log);
+                return;
             }
+            
+            this.awaiting = true;
+            this.internalOptions = [];
+
+            return Promise.resolve(this.options(this.searchKeyword)).then((options) => {
+                this.internalOptions = options;
+                this.awaiting = false;
+            }).catch(this.$log);
         },
 
         showSuggestions () {
@@ -335,6 +335,10 @@ export default {
             });
 
             return matches.length > 0;
+        },
+
+        addValue () {
+            this.$listeners.add(this.searchKeyword);
         },
     },
 
