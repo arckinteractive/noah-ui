@@ -273,7 +273,7 @@ export default {
             if (Array.isArray(this.options)) {
                 this.internalOptions = this.options;
 
-                return;
+                return Promise.resolve(this.internalOptions);
             }
 
             this.awaiting = true;
@@ -282,7 +282,7 @@ export default {
             return Promise.resolve(this.options(this.searchKeyword)).then((options) => {
                 this.internalOptions = options;
                 this.awaiting = false;
-                
+
                 return options;
             }).catch(this.$log);
         },
