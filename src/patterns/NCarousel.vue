@@ -84,6 +84,12 @@ export default {
             type: Boolean,
             default: true,
         },
+        /**
+         * Change slides every X seconds
+         */
+        autoplay: {
+            type: [Number, String],
+        },
     },
 
     mounted () {
@@ -96,6 +102,8 @@ export default {
                 mouseDrag: true,
                 nav: this.dots,
                 navPosition: 'bottom',
+                autoplay: this.autoplay > 0,
+                autoplayTimeout: parseInt(this.autoplay, 10) / 1000,
             });
 
             this.$slider = module.tns(options);
