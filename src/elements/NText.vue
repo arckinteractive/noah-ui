@@ -1,5 +1,5 @@
 <template>
-    <component :is="tagName" v-bind="filteredAttrs">
+    <component :is="tagName || 'div'" v-bind="filteredAttrs">
         <slot></slot>
     </component>
 </template>

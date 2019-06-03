@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
     .header {
-        margin-bottom: var(--current-space);
+        margin-bottom: var(--space-l);
 
         .n-h5 {
             margin-top: calc(-1 * var(--space-s));

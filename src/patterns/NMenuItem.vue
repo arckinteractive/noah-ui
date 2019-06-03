@@ -99,7 +99,7 @@ export default {
     computed: {
         props () {
             const {
-                click, children, expanded, selected, ...props 
+                click, children, expanded, selected, ...props
             } = this.item;
 
             props.class = this.config.children.anchor;

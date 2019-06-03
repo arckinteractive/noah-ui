@@ -3,6 +3,8 @@
         v-editable="$attrs.blok"
         v-bind="$props"
         tag-name="div"
+        :text-color="$attrs.color"
+        :text-size="$attrs.size"
     >
         <component
             v-for="slot in $attrs.blok.content"

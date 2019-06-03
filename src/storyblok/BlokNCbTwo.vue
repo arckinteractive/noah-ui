@@ -22,7 +22,6 @@
                 </n-div>
             </n-div>
 
-
             <n-div
                 flex
                 :gravity="$attrs.blok.gravity"
@@ -38,6 +37,7 @@
                         flex
                         :gravity="$attrs.blok.gravity"
                         :stretched="$attrs.blok.stretched"
+                        gap="large"
                     >
                         <n-div col sm:12 md:6>
                             <component
@@ -80,7 +80,7 @@ export default {
 
 <style lang="scss" scoped>
     .header {
-        margin-bottom: var(--current-space);
+        margin-bottom: var(--space-l);
 
         .n-h5 {
             margin-top: calc(-1 * var(--space-s));
