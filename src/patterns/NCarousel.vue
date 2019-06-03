@@ -93,22 +93,24 @@ export default {
     },
 
     mounted () {
-        import('tiny-slider/src/tiny-slider.js').then((module) => {
-            const options = Object.assign({}, this.options || {}, {
-                container: this.$refs.track.$el,
-                controls: this.arrows,
-                nextButton: this.$refs.next.$el,
-                prevButton: this.$refs.prev.$el,
-                mouseDrag: true,
-                nav: this.dots,
-                navPosition: 'bottom',
-                autoplay: this.autoplay > 0,
-                autoplayTimeout: parseInt(this.autoplay, 10) / 1000,
+        this.$nextTick(() => {
+            import('tiny-slider/src/tiny-slider.js').then((module) => {
+                const options = Object.assign({}, this.options || {}, {
+                    container: this.$refs.track.$el,
+                    controls: this.arrows,
+                    nextButton: this.arrows ? this.$refs.next.$el : null,
+                    prevButton: this.arrows ? this.$refs.prev.$el : null,
+                    mouseDrag: true,
+                    nav: this.dots,
+                    navPosition: 'bottom',
+                    autoplay: this.autoplay > 0,
+                    autoplayTimeout: parseInt(this.autoplay, 10) / 1000,
+                });
+
+                this.$slider = module.tns(options);
+
+                this.$slider.events.on('indexChanged', (...args) => this.$emit('change', args));
             });
-
-            this.$slider = module.tns(options);
-
-            this.$slider.events.on('indexChanged', (...args) => this.$emit('change', args));
         });
     },
 
