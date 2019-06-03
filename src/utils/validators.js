@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export const create = (validator) => {
     return {
         async validator (rule, value, callback) {
@@ -127,68 +125,6 @@ export default {
     isEmail: (err) => {
         return create((value) => {
             assertValidEmail(value, err);
-        });
-    },
-
-    isDate: (format = 'MM-DD-YYYY', err) => {
-        return create((value) => {
-            if (!value) {
-                return;
-            }
-
-            const date = moment(value, format, true);
-
-            if (!date.isValid()) {
-                throw new Error(err || `Please provide a date as ${format}`);
-            }
-        });
-    },
-
-    isPastDate (format = 'MM-DD-YYYY', err) {
-        return create((value) => {
-            if (!value) {
-                return;
-            }
-
-            const date = moment(value, format, true);
-
-            if (!date.isValid() || date.isAfter(moment())) {
-                throw new Error(err || 'Date should not be in the future');
-            }
-        });
-    },
-
-    isFutureDate (format, err) {
-        return create((value) => {
-            if (!value) {
-                return;
-            }
-
-            const date = moment(value, format, true);
-
-            if (!date.isValid() || date.isBefore(moment())) {
-                throw new Error(err || 'Date should not be in the future');
-            }
-        });
-    },
-
-    isValidBirthdate (format = 'MM-DD-YYYY', err) {
-        return create((value) => {
-            if (!value) {
-                return;
-            }
-
-            const date = moment(value, [moment.ISO_8601, format], true);
-            const dateIsInPast = date.isBefore(moment().subtract(100, 'y'));
-            const dateIsInFuture = date.isAfter(moment().add(1, 'y'));
-
-            if (!date.isValid()) {
-                throw new Error(err || `Please provide birth date in the following format: ${format}`);
-            }
-
-            if (dateIsInPast || dateIsInFuture) {
-                throw new Error(err || 'Birth dates must be within the past 200 years');
-            }
         });
     },
 
