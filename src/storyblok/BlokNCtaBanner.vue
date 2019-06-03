@@ -9,7 +9,7 @@
                 flex
                 center-center
             >
-                <n-div col sm:12 md:auto sm:text-align="center" md:text-align="left">
+                <n-div col sm:narrow>
                     <component
                         v-for="slot in $attrs.blok.columnLeft"
                         :key="slot._uid"
@@ -19,7 +19,9 @@
                     ></component>
                 </n-div>
 
-                <n-div col sm:12 md:auto md:margin-left="auto" sm:text-align="center" md:text-align="right">
+                <n-div col sm:none lg:auto></n-div>
+
+                <n-div col sm:narrow>
                     <component
                         v-for="slot in $attrs.blok.columnRight"
                         :key="slot._uid"

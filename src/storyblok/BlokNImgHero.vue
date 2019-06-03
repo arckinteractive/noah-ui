@@ -5,8 +5,8 @@
     >
         <template slot="background">
             <n-img
-                :src="imgSrc"
-                :srcVt="imgSrcVt"
+                :src="imgSrc | resize('1280x0')"
+                :srcVt="imgSrcVt | resize('0x1020')"
                 alt="Cover Image"
             />
         </template>

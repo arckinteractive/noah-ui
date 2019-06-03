@@ -1,7 +1,10 @@
 <template>
     <n-embed
         v-editable="$attrs.blok"
-        v-bind="$props"
+        :posterUrl="posterUrl | resize('600x0')"
+        :url="url"
+        :ratio="ratio"
+        :overlay-color="overlayColor"
     ></n-embed>
 </template>
 

@@ -8,8 +8,8 @@
         >
             <n-img
                 v-if="imgSrc || imgSrcVt"
-                :src="imgSrc"
-                :srcVt="imgSrcVt"
+                :src="imgSrc | resize('600x0')"
+                :srcVt="imgSrcVt | resize('0x600')"
                 :alt="title"
             />
         </n-media>

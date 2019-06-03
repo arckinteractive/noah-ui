@@ -4,7 +4,7 @@
         class="testimonial"
     >
         <n-media avatar width="60px">
-            <img :src="image" :alt="name"/>
+            <img :src="image | resize('60x0')" :alt="name"/>
         </n-media>
 
         <n-text color="black">
