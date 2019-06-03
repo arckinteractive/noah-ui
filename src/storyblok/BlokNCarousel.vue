@@ -2,14 +2,21 @@
     <n-carousel
         v-editable="$attrs.blok"
         v-bind="$props"
+        :options="{
+            rewind: true,
+        }"
     >
-        <component
+        <div
             v-for="slot in $attrs.blok.content"
             :key="slot._uid"
-            :blok="slot"
-            v-bind="slot"
-            :is="slot.component | dashify"
-        ></component>
+        >
+            <component
+                :blok="slot"
+                v-bind="slot"
+                :is="slot.component | dashify"
+                :lazy-load="false"
+            ></component>
+        </div>
     </n-carousel>
 </template>
 
