@@ -54,7 +54,13 @@ export default {
         toggle () {
             this.expanded = !this.expanded;
 
-            this.$refs.tile.$el.scrollIntoView(true);
+            this.$nextTick(() => {
+                if (this.expanded) {
+                    this.$refs.tile.$el.scrollIntoView(true, {
+                        behavior: 'smooth',
+                    });
+                }
+            });
         },
     },
 };
