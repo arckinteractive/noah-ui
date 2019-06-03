@@ -27,49 +27,58 @@
                 flex
                 :gravity="$attrs.blok.gravity"
                 :stretched="$attrs.blok.stretched"
-                col
-                sm:12
-                :lg:span="contentSpan"
-                lg:mx="auto"
             >
-                <n-div col sm:12 md:6 lg:3>
-                    <component
-                        v-for="slot in $attrs.blok.contentFirst"
-                        :key="slot._uid"
-                        :blok="slot"
-                        v-bind="slot"
-                        :is="slot.component | dashify"
-                    ></component>
-                </n-div>
+                <n-div
+                    col
+                    sm:12
+                    :lg:span="contentSpan"
+                    lg:mx="auto"
+                >
+                    <n-div
+                        flex
+                        :gravity="$attrs.blok.gravity"
+                        :stretched="$attrs.blok.stretched"
+                    >
+                        <n-div col sm:12 md:6 lg:3>
+                            <component
+                                v-for="slot in $attrs.blok.contentFirst"
+                                :key="slot._uid"
+                                :blok="slot"
+                                v-bind="slot"
+                                :is="slot.component | dashify"
+                            ></component>
+                        </n-div>
 
-                <n-div col sm:12 md:6 lg:3>
-                    <component
-                        v-for="slot in $attrs.blok.contentSecond"
-                        :key="slot._uid"
-                        :blok="slot"
-                        v-bind="slot"
-                        :is="slot.component | dashify"
-                    ></component>
-                </n-div>
+                        <n-div col sm:12 md:6 lg:3>
+                            <component
+                                v-for="slot in $attrs.blok.contentSecond"
+                                :key="slot._uid"
+                                :blok="slot"
+                                v-bind="slot"
+                                :is="slot.component | dashify"
+                            ></component>
+                        </n-div>
 
-                <n-div col sm:12 md:6 lg:3>
-                    <component
-                        v-for="slot in $attrs.blok.contentThird"
-                        :key="slot._uid"
-                        :blok="slot"
-                        v-bind="slot"
-                        :is="slot.component | dashify"
-                    ></component>
-                </n-div>
+                        <n-div col sm:12 md:6 lg:3>
+                            <component
+                                v-for="slot in $attrs.blok.contentThird"
+                                :key="slot._uid"
+                                :blok="slot"
+                                v-bind="slot"
+                                :is="slot.component | dashify"
+                            ></component>
+                        </n-div>
 
-                <n-div col sm:12 md:6 lg:3>
-                    <component
-                        v-for="slot in $attrs.blok.contentFourth"
-                        :key="slot._uid"
-                        :blok="slot"
-                        v-bind="slot"
-                        :is="slot.component | dashify"
-                    ></component>
+                        <n-div col sm:12 md:6 lg:3>
+                            <component
+                                v-for="slot in $attrs.blok.contentFourth"
+                                :key="slot._uid"
+                                :blok="slot"
+                                v-bind="slot"
+                                :is="slot.component | dashify"
+                            ></component>
+                        </n-div>
+                    </n-div>
                 </n-div>
             </n-div>
         </n-div>
