@@ -13,9 +13,6 @@
   "dependencies": {
     "core-js": "^2.6.9",
     "lodash.debounce": "^4.0.8",
-    "markdown-it": "^8.4.2",
-    "moment": "^2.24.0",
-    "nouislider": "^13.1.5",
     "popper.js": "^1.15.0",
     "raw-loader": "^2.0.0",
     "tiny-slider": "^2.9.2",
@@ -23,7 +20,6 @@
     "vue-click-outside": "^1.0.7",
     "vue-codemirror": "^4.0.6",
     "vue-meta": "^1.6.0",
-    "vue-no-ssr": "^1.1.1",
     "svg-country-flags": "^1.2.6"
   },
   "devDependencies": {
