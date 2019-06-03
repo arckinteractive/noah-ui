@@ -11,7 +11,7 @@
     >
         <n-div
             col
-            sm:0
+            :sm:span="hideImgSmall ? 'none' : 12"
             :lg:span="imgSpan || 6"
             :class="imageClasses"
         >
@@ -73,6 +73,7 @@ export default {
         'contentSpan',
         'imgPosition',
         'imgSpan',
+        'hideImgSmall',
     ],
 
     computed: {
@@ -96,7 +97,7 @@ export default {
         }
     }
 
-    .split-image .n-img {
+    /deep/ .split-image .n-img {
         position: relative;
         height: 100%;
 

@@ -51,5 +51,9 @@ export default {
             ...headingTag,
             display_name: 'SEO Level',
         },
+        hideImgSmall: {
+            type: 'boolean',
+            display_name: 'Hide Image on Small Viewports',
+        },
     },
 };
