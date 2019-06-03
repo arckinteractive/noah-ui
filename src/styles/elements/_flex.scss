@@ -117,18 +117,14 @@
   .col-#{$i} {
     @include flex-basis($i);
   }
+}
 
-  .col-narrow {
-    flex: none;
-  }
+.col-narrow {
+  flex: none;
+}
 
-  .col-auto {
-    flex: 1 1 auto;
-  }
-
-  .col-none {
-    display: none;
-  }
+.col-auto {
+  flex: 1 1 auto;
 }
 
 @media #{$is-mobile-up} {
@@ -145,9 +141,12 @@
   .sm\:col-auto {
     flex: 1 1 auto;
   }
+}
 
+@media #{$is-mobile-only} {
+  .col-none,
   .sm\:col-none {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -165,9 +164,11 @@
   .md\:col-auto {
     flex: 1 1 auto;
   }
+}
 
+@media #{$is-tablet-only} {
   .md\:col-none {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -185,9 +186,11 @@
   .lg\:col-auto {
     flex: 1 1 auto;
   }
+}
 
+@media #{$is-desktop-only} {
   .lg\:col-none {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -205,12 +208,13 @@
   .xl\:col-auto {
     flex: 1 1 auto;
   }
-
-  .xl\:col-none {
-    display: none;
-  }
 }
 
+@media #{$is-hd-only} {
+  .xl\:col-none {
+    display: none !important;
+  }
+}
 
 /**
   CONTAINER
