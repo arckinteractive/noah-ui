@@ -9,6 +9,7 @@ export default {
     schema: {
         ratio: {
             type: 'number',
+            default_value: 1,
         },
         href: {
             type: 'multilink',

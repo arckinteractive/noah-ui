@@ -20,6 +20,7 @@ export default {
         },
         ratio: {
             type: 'number',
+            default_value: 1,
         },
         imgSrc: {
             type: 'image',
