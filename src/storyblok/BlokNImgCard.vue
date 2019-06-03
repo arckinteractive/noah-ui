@@ -26,6 +26,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: ['ratio', 'title', 'href', 'imgSrc', 'imgSrcVt', 'tagName', 'color', 'textAlign'],
 };
 </script>

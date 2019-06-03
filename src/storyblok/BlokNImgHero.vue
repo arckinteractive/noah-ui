@@ -37,6 +37,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: [
         'color',
         'overlayColor',

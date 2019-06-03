@@ -7,6 +7,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: ['url', 'posterUrl', 'ratio', 'overlayColor'],
 };
 </script>

@@ -7,6 +7,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: ['src', 'srcVt', 'alt'],
 };
 </script>

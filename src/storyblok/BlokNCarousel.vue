@@ -1,8 +1,7 @@
 <template>
-    <n-list
+    <n-carousel
         v-editable="$attrs.blok"
         v-bind="$props"
-        tag-name="div"
     >
         <component
             v-for="slot in $attrs.blok.content"
@@ -11,13 +10,17 @@
             v-bind="slot"
             :is="slot.component | dashify"
         ></component>
-    </n-list>
+    </n-carousel>
 </template>
 
 <script>
 export default {
     inheritAttrs: false,
 
-    props: ['numbered', 'bulleted', 'divided', 'textAlign'],
+    props: [
+        'arrows',
+        'dots',
+        'autoplay',
+    ],
 };
 </script>

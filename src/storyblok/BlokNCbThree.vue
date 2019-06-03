@@ -66,6 +66,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: [
         'title',
         'subtitle',

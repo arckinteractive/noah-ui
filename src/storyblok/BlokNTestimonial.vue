@@ -17,6 +17,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: ['name', 'text', 'image'],
 };
 </script>
@@ -34,7 +36,7 @@ export default {
     }
 
     .testimonial .n-media {
-        margin-top: -60px;
+        margin-top: -60px !important;
         box-shadow: 0 0 0 4px var(--color-grey-border);
     }
 </style>

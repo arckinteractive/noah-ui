@@ -34,6 +34,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: ['ratio', 'title', 'subtitle', 'href', 'imgSrc', 'imgSrcVt', 'headingTagName', 'textAlign'],
 };
 </script>

@@ -12,6 +12,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     head () {
         return {
             title: this.$attrs.blok.title,

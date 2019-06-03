@@ -9,6 +9,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: ['text', 'color', 'size', 'textAlign'],
 };
 </script>

@@ -9,6 +9,8 @@
 import storyblok from './storyblok';
 
 export default {
+    inheritAttrs: false,
+
     mixins: [storyblok],
 
     props: ['text', 'href', 'color', 'size', 'circle', 'outlined', 'ghost', 'prefixIcon', 'suffixIcon'],

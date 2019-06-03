@@ -35,6 +35,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: [
         'color',
         'faded',

@@ -11,7 +11,7 @@
     >
         <n-div
             col
-            sm:12
+            sm:0
             :lg:span="imgSpan || 6"
             :class="imageClasses"
         >
@@ -56,6 +56,8 @@
 
 <script>
 export default {
+    inheritAttrs: false,
+
     props: [
         'title',
         'subtitle',
