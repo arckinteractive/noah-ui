@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import markdown from '../../../src/filters/markdown';
+import markdown from '../utils/markdown';
 
 export default {
     name: 'ComponentMethods',
