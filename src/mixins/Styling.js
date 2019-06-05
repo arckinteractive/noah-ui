@@ -1,3 +1,22 @@
+const isValidAttrValue = (value) => {
+    const invalid = value === false
+        || typeof value === 'undefined'
+        || value === 'undefined'
+        || value === null
+        || value === 'null'
+        || typeof value === 'object';
+
+    return !invalid;
+};
+
+const dashifyAttrName = (name) => {
+    return name.toString()
+        .replace(/([A-Z])/g, ' $1')
+        .trim()
+        .toLowerCase()
+        .replace(/[ _]/g, '-');
+};
+
 export default {
     inheritAttrs: false,
 
@@ -19,7 +38,7 @@ export default {
                     modifierPrefix: this.config.modifierPrefix || '',
                     whitelist: this.$config.style.whitelist || [],
                     classMap: Object.assign({}, this.$config.style.classMap || {}, this.config.classMap || {}),
-                    viewports: this.$config.viewport.names,
+                    viewports: this.$config.viewport.names || {},
                 },
             });
 
@@ -46,13 +65,29 @@ export default {
 
     methods: {
         buildCssModifiers (data = {}) {
+            const modifierPrefix = this.config.modifierPrefix || '';
             const map = this.config.classMap || {};
 
             return Object.keys(data)
-                .reduce((acc, cur) => {
-                    const name = map[cur] || `${cur}`;
+                .reduce((acc, name) => {
+                    if (!isValidAttrValue(name)) {
+                        return acc;
+                    }
 
-                    acc[name] = typeof cur !== 'undefined' && cur !== 'undefined' && !!data[cur];
+                    let className = '';
+                    const classBase = `${modifierPrefix}${name}`;
+
+                    const value = data[name];
+
+                    if (typeof value !== 'string' && !!value) {
+                        className = dashifyAttrName(classBase);
+                        className = map[className] || className;
+                        acc[className] = true;
+                    } else {
+                        className = dashifyAttrName(`${classBase}-${value}`);
+                        className = map[className] || className;
+                        acc[className] = true;
+                    }
 
                     return acc;
                 }, {});
@@ -62,11 +97,18 @@ export default {
             const attributes = Object.assign({}, attrs);
             const classes = [];
 
-            const addModifier = ({
-                viewport, value, dashified, attr, 
-            }) => {
-                if (value === true || value === '') {
-                    value = dashified;
+            const addModifier = (modifier) => {
+                const {
+                    viewport,
+                    value,
+                    dashified,
+                    attr,
+                } = modifier;
+
+                let val = value;
+
+                if (val === true || val === '') {
+                    val = dashified;
                 }
 
                 const attrOpts = config.whitelist.find((e) => {
@@ -79,7 +121,7 @@ export default {
 
                 const viewportPrefix = attrOpts.responsive ? config.viewports[viewport || ''] : '';
                 const classPrefix = config.modifierPrefix || attrOpts.classPrefix || '';
-                const modifierClass = attrOpts.class || `${classPrefix}${value}`;
+                const modifierClass = attrOpts.class || `${classPrefix}${val}`;
 
                 if (config.classMap[modifierClass]) {
                     classes.push(`${viewportPrefix}${config.classMap[modifierClass]}`);
@@ -100,11 +142,7 @@ export default {
             Object.keys(attributes).forEach((attr) => {
                 const [name, viewport = 'sm'] = attr.split(':', 2).reverse();
 
-                const dashified = name.toString()
-                    .replace(/([A-Z])/g, ' $1')
-                    .trim()
-                    .toLowerCase()
-                    .replace(/[ _]/g, '-');
+                const dashified = dashifyAttrName(name);
 
                 if (attrWhitelist.indexOf(dashified) < 0 || Object.keys(config.viewports).indexOf(viewport) < 0) {
                     return;
@@ -112,13 +150,7 @@ export default {
 
                 const value = attributes[attr];
 
-                if (value === false
-                    || typeof value === 'undefined'
-                    || value === 'undefined'
-                    || value === null
-                    || value === 'null'
-                    || typeof value === 'object'
-                ) {
+                if (!isValidAttrValue(value)) {
                     return;
                 }
 
@@ -130,11 +162,29 @@ export default {
                 });
             });
 
-            attributes.class = classes.reduce((prev, cur) => {
+            const classAttr = {};
+
+            if (typeof attributes.class === 'string') {
+                classAttr[attributes.class] = true;
+            } else if (Array.isArray(attributes.class)) {
+                attributes.class.forEach((e) => {
+                    if (typeof e === 'string') {
+                        classAttr[e] = true;
+                    } else if (typeof e === 'object') {
+                        Object.assign(classAttr, e);
+                    }
+                });
+            } else if (typeof attributes.class === 'object') {
+                Object.assign(classAttr, attributes.class);
+            }
+
+            Object.assign(classAttr, classes.reduce((prev, cur) => {
                 prev[cur] = true;
 
                 return prev;
-            }, {});
+            }, {}));
+
+            attributes.class = classAttr;
 
             return attributes;
         },
