@@ -1,11 +1,9 @@
-import Md from 'markdown-it';
+const md = require('markdown-it')({});
 
 export default (content) => {
     if (typeof content !== 'string' || !content) {
         return '';
     }
 
-    const Md = new Md();
-
-    return Md.render(content);
+    return md.render(content);
 };

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[60],{937:function(t,e,n){"use strict";n.r(e);var o=n(0),l=Object(o.a)({},function(){var t=this.$createElement;return(this._self._c||t)("n-tile",{attrs:{icon:"fas fa-download",subtitle:"Get a copy of the file for your records",title:"Download"}})},[],!1,null,null,null);e.default=l.exports}}]);

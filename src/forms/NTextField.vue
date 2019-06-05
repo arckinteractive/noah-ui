@@ -43,6 +43,7 @@ export default {
         return {
             localConfig: {
                 name: 'NTextField',
+                config: {},
             },
         };
     },
