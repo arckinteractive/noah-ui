@@ -1,0 +1,125 @@
+version: 2
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+    - build:
+        filters:
+          tags:
+            ignore: /.*/
+    - unit_tests:
+        filters:
+          tags:
+            ignore: /.*/
+    - deploy_staging:
+        filters:
+          branches:
+            only: master
+    - deploy_prod:
+        filters:
+          branches:
+            ignore: /.*/
+          tags:
+            only: /v[0-9]+(\.[0-9]+)*/
+
+#==================================================================================================
+# Anchors
+#==================================================================================================
+defaults: &default_docker_image_and_directory
+  working_directory: ~/noah-ui
+  docker:
+  # If you need to update this image update the image tag below
+  # with a tag from https://hub.docker.com/r/circleci/node/tags/
+  - image: circleci/node:8.12.0-browsers
+
+anchor_1: &restore_yarn_cache
+  restore_cache:
+    keys:
+    - v2-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    - v2-yarn-{{ .Branch }}
+    - v2-yarn
+
+anchor_2: &save_yarn_cache
+  save_cache:
+    key: v2-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    paths:
+    - /home/circleci/.cache/yarn
+    - /home/circleci/.yarn-cache
+
+anchor_3: &yarn_install
+  run: yarn install --pure-lockfile --no-progress --non-interactive --check-files
+
+anchor_4: &rebuild_node_sass
+  run: npm rebuild node-sass
+
+anchor_5: &create_npmrc
+  run:
+    name: Set and authenticate with registry
+    command: |
+      echo "${NPMRC}" | base64 --decode > ~/.npmrc
+    #--------------------------------------------------------------------------------------------------
+jobs:
+  build:
+    <<: *default_docker_image_and_directory
+    steps:
+    - checkout
+    - *create_npmrc
+    - *restore_yarn_cache
+    - *yarn_install
+    - *rebuild_node_sass
+    - *save_yarn_cache
+    - run: yarn run build
+  unit_tests:
+    <<: *default_docker_image_and_directory
+    steps:
+    - checkout
+    - *create_npmrc
+    - *restore_yarn_cache
+    - *yarn_install
+    - *rebuild_node_sass
+    - *save_yarn_cache
+    - run: yarn lint
+    - run: yarn test:unit
+    - run:
+        name: "Publish coverage data to Codecov"
+        when: always
+        command: |
+          readonly coverage_path="${PWD}/coverage/lcov.info"
+          readonly artifacts_path='/tmp/artifacts'
+          if [[ ! -f "${coverage_path}" ]]; then
+            echo "no coverage file found"
+            exit 0
+          fi
+          if [[ ! "${CODECOV_TOKEN}" ]]; then
+            echo "CODECOV_TOKEN environment variable must be set in order to publish coverage data to Codecov"
+            exit 0
+          fi
+          mkdir -p "${artifacts_path}"
+          cp "${coverage_path}" "${artifacts_path}/coverage.json"
+          node_modules/.bin/codecov \
+            --disable=gcov \
+            "--file=${coverage_path}"
+    - run: yarn run build
+  deploy_prod:
+    <<: *default_docker_image_and_directory
+    steps:
+    - checkout
+    - *create_npmrc
+    - *restore_yarn_cache
+    - *yarn_install
+    - *rebuild_node_sass
+    - run:
+        name: "Deploy to production"
+        command: yarn deploy:prod
+  deploy_staging:
+    <<: *default_docker_image_and_directory
+    steps:
+    - checkout
+    - *create_npmrc
+    - *restore_yarn_cache
+    - *yarn_install
+    - *rebuild_node_sass
+    - run:
+        name: "Deploy to staging"
+        command: yarn deploy:staging
+
