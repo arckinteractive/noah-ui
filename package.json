@@ -82,18 +82,16 @@
     "functions": 0,
     "branches": 0,
     "include": [
-      "src/**/*.{js,vue}"
+      "src/**/*.{js,vue}",
+      "src/*.{js,vue}"
     ],
-    "exclude": [
-      "src/*.js",
-      "src/vendors/**/*.js"
-    ],
+    "exclude": [],
     "reporter": [
       "lcov",
       "text-summary"
     ],
     "extension": [
-      ".js"
+      ".js", ".vue"
     ],
     "cache": true,
     "all": true,
