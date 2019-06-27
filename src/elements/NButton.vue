@@ -80,11 +80,15 @@ export default {
 
     computed: {
         componentName () {
+            if (this.tagName) {
+                return this.tagName;
+            }
+
             if (this.href || this.to) {
                 return 'a';
             }
 
-            return this.tagName || 'button';
+            return 'button';
         },
 
         listeners () {
