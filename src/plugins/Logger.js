@@ -34,11 +34,11 @@ export default {
             const statusCode = getStatusCode(err);
 
             if (typeof altMessages[statusCode] !== 'undefined') {
-                this.$alert(altMessages[statusCode], 'danger');
+                Vue.prototype.$alert(altMessages[statusCode], 'danger');
             } else {
                 const msg = message || message === '' ? message : err.message;
 
-                this.$alert(msg, 'danger');
+                Vue.prototype.$alert(msg, 'danger');
             }
         };
     },
