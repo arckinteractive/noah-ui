@@ -36,7 +36,11 @@ export default {
                 container.setAttribute('id', containerId);
                 container.setAttribute('class', containerClass);
 
-                this.$root.$el.appendChild(container);
+                if (this.$root) {
+                    this.$root.$el.appendChild(container);
+                } else {
+                    document.body.appendChild(container);
+                }
             }
 
             container.appendChild(instance.$el);
