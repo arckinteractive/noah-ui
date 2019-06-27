@@ -354,7 +354,12 @@ export default {
                         return this.returnObject ? e : e[this.valueProp];
                     });
                 } else {
-                    this.inputValue = this.returnObject ? this.internalValue : this.internalValue[this.valueProp];
+                    if (typeof this.internalValue !== 'undefined' && this.inputValue !== null) {
+                        this.inputValue = this.returnObject ? this.internalValue : this.internalValue[this.valueProp];
+                    } else {
+                        this.inputValue = null;
+                    }
+
                     this.hideSuggestions();
                 }
             },

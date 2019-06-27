@@ -7,11 +7,13 @@ import {
     FileList,
     File,
 } from 'file-api';
+import config from '@/noah.config';
 
 chai.use(sinonChai);
 
 global.sinon = sinon;
 
+utils.config.mocks.$config = config;
 // utils.config.stubs.transition = false;
 
 global.File = File;

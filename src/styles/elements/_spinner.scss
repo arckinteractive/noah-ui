@@ -1,0 +1,9 @@
+@import "../global";
+
+.n-spinner {
+  @each $size, $name in $sizes {
+    &.size-#{$name} {
+      @include spinner($size: var(--size-#{$size}), $stroke: 3px, $color: var(--color-primary));
+    }
+  }
+}

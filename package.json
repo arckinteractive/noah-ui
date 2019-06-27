@@ -82,21 +82,20 @@
     "functions": 0,
     "branches": 0,
     "include": [
-      "src/**/*.{js,vue}"
+      "src/**/*.js",
+      "src/**/*.vue"
     ],
-    "exclude": [
-      "src/*.js",
-      "src/vendors/**/*.js"
+    "extension": [
+      ".js",
+      ".vue"
     ],
     "reporter": [
       "lcov",
       "text-summary"
     ],
-    "extension": [
-      ".js"
-    ],
     "cache": true,
     "all": true,
+    "sourceMap": true,
     "report-dir": "./coverage"
   }
 }
