@@ -354,7 +354,7 @@ export default {
                         return this.returnObject ? e : e[this.valueProp];
                     });
                 } else {
-                    if (typeof this.internalValue !== 'undefined' && this.inputValue !== null) {
+                    if (typeof this.internalValue !== 'undefined' && this.internalValue !== null) {
                         this.inputValue = this.returnObject ? this.internalValue : this.internalValue[this.valueProp];
                     } else {
                         this.inputValue = null;
