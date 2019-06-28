@@ -108,8 +108,8 @@ export default {
         componentStates () {
             return {
                 loading: this.loading,
-                prefixed: this.prefixLabel || this.$slots.prefixLabel,
-                suffixed: this.suffixLabel || this.$slots.suffixLabel,
+                prefixed: !!(this.prefixLabel || this.$slots.prefixLabel),
+                suffixed: !!(this.suffixLabel || this.$slots.suffixLabel),
             };
         },
 
@@ -117,8 +117,8 @@ export default {
             return {
                 [this.config.children.inner]: true,
                 ...this.buildCssModifiers({
-                    prefixed: this.prefixIcon || this.$slots.prefixIcon,
-                    suffixed: this.suffixIcon || this.$slots.suffixIcon,
+                    prefixed: !!(this.prefixIcon || this.$slots.prefixIcon),
+                    suffixed: !!(this.suffixIcon || this.$slots.suffixIcon),
                 }, false),
             };
         },
