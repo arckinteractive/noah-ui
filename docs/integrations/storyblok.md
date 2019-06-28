@@ -20,7 +20,9 @@ First of all, add your Storyblok Management API token and spaceId to to `package
 }
 ```
 
-Afterwards, run `yarn storyblok:sync` to create the necessary field types and components.
+Install `yarn add @arckinteractive/noah-storyblok`.
+
+Afterwards, run `yarn storyblok-sync` to create the necessary field types and components.
 
 ```
 yarn storyblok:sync
