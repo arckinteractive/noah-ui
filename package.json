@@ -8,7 +8,8 @@
     "test:unit": "nyc vue-cli-service test:unit",
     "dev": "yarn concurrently \"yarn components:parse\" \"vuepress dev docs\"",
     "build": "babel-node ./.scripts/components/parse.js && vuepress build docs && vue-cli-service build --target lib ./src/main.js",
-    "components:parse": "nodemon --watch src -e vue --exec babel-node ./.scripts/components/parse.js"
+    "components:parse": "nodemon --watch src -e vue --exec babel-node ./.scripts/components/parse.js",
+    "deploy": "./.scripts/deploy.sh"
   },
   "dependencies": {
     "core-js": "^2.6.9",

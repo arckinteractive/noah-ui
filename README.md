@@ -1,4 +1,11 @@
-# noah-ui
+# NoahUI
+
+Vue.js framework for web-artisans brought to you by [ArckInteractive](https://arckinteractive.com/).
+
+NoahUi was conceptualized and brought to life by [Ismayil Khayredinov](https://github.com/hypejunction)
+
+## [Documentation & Demo](https://arckinteractive.github.io/noah-ui/)
+
 
 ## Project setup
 ```
