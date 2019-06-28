@@ -15,7 +15,6 @@ export default () => {
         'patterns',
         'plugins',
         'apps',
-        'storyblok',
     ];
 
     const components = {};
