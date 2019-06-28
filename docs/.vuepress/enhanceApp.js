@@ -1,4 +1,4 @@
-import NoahUi from '../../src/index.js';
+import NoahUi from '../../src/main.js';
 import './docs.scss';
 
 export default (

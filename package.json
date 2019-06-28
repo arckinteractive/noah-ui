@@ -1,12 +1,12 @@
 {
   "name": "@arckinteractive/noah-ui",
   "version": "0.1.0",
-  "main": "./src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "lint": "vue-cli-service lint",
     "test:unit": "nyc vue-cli-service test:unit",
     "dev": "yarn concurrently \"yarn components:parse\" \"vuepress dev docs\"",
-    "build": "babel-node ./.scripts/components/parse.js && vuepress build docs",
+    "build": "babel-node ./.scripts/components/parse.js && vuepress build docs && vue-cli-service build --target lib ./src/main.js",
     "components:parse": "nodemon --watch src -e vue --exec babel-node ./.scripts/components/parse.js"
   },
   "dependencies": {
