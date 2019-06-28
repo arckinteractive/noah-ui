@@ -9,6 +9,8 @@ export default (
         siteData, // site metadata
     },
 ) => {
+    //Vue.config.devtools = true;
+
     Vue.use(NoahUi);
 
     Vue.component('codemirror', async () => {

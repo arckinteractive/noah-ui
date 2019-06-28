@@ -1,35 +1,29 @@
 <template>
-    <n-div flex right-center>
-        <template v-if="$viewport.isDesktopUp">
-            <SearchBox col sm:12 md:4/>
-        </template>
+    <ClientOnly>
+        <n-div flex right-center>
+            <template v-if="$viewport.isTabletDown">
+                <router-link to="/" tag="h1">NoahUI</router-link>
 
-        <template v-else>
-            <router-link to="/" tag="h1">NoahUI</router-link>
-
-            <n-div sm:narrow>
-                <n-button
-                    circle
-                    ghost
-                    white
-                    xlarge
-                    :icon="showDrawer ? 'fas fa-times' : 'fas fa-bars'"
-                    @click="showDrawer = !showDrawer"
-                />
-            </n-div>
-
-            <n-drawer
-                attachment="right"
-                v-model="showDrawer"
-            >
-                <n-div padding="medium">
-                    <SearchBox col sm:12 md:4/>
+                <n-div sm:narrow>
+                    <n-button
+                        circle
+                        ghost
+                        white
+                        xlarge
+                        :icon="showDrawer ? 'fas fa-times' : 'fas fa-bars'"
+                        @click="showDrawer = !showDrawer"
+                    />
                 </n-div>
 
-                <Sidebar/>
-            </n-drawer>
-        </template>
-    </n-div>
+                <n-drawer
+                    attachment="right"
+                    v-model="showDrawer"
+                >
+                    <Sidebar/>
+                </n-drawer>
+            </template>
+        </n-div>
+    </ClientOnly>
 </template>
 
 <script>

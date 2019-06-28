@@ -49,10 +49,7 @@
 </template>
 
 <script>
-import NCheckbox from '../../../../src/forms/NCheckbox';
-
 export default {
-    components: { NCheckbox },
     data () {
         return {
             model: {

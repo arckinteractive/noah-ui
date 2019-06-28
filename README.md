@@ -4,6 +4,10 @@ Vue.js framework for web-artisans brought to you by [ArckInteractive](https://ar
 
 NoahUi was conceptualized and brought to life by [Ismayil Khayredinov](https://github.com/hypejunction)
 
+**This project is work in progress. Please abstrain from using it in production environments until it reaches maturity**
+
+We welcome contributions. Tests are incomplete and there are still some components that need work.
+ 
 ## [Documentation & Demo](https://arckinteractive.github.io/noah-ui/)
 
 

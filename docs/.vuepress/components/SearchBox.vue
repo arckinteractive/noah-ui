@@ -1,54 +1,63 @@
 <template>
     <div class="search-box">
-        <n-popup
-            :visible="showSuggestions"
-            @click.stop
-            @mouseleave="unfocus"
-            placement="bottom-start"
-            :open-on-click="false"
-            class="suggestions"
-            small
-        >
-            <div slot="trigger">
-                <n-text-field
-                    @keyup.down="onDown"
-                    @keyup.enter="go(focusIndex)"
-                    @keyup.up="onUp"
-                    @focus="focus"
-                    @blur="unfocus"
-                    aria-label="Search"
-                    autocomplete="off"
-                    placeholder="Search"
-                    prefix-icon="fas fa-search"
-                    spellcheck="false"
-                    v-model="query"
-                />
-            </div>
+        <n-div ref="trigger">
+            <n-text-field
+                @keyup.down="onDown"
+                @keyup.enter="go(focusIndex)"
+                @keyup.up="onUp"
+                @focus="focus"
+                @blur="unfocus"
+                aria-label="Search"
+                autocomplete="off"
+                placeholder="Search"
+                icon="fas fa-search"
+                spellcheck="false"
+                v-model="query"
+            />
+        </n-div>
 
-            <n-menu
-                v-if="suggestions && suggestions.length"
-                :accordion="false"
-                :items="suggestions"
-            ></n-menu>
+        <ClientOnly>
+            <n-popup
+                v-model="visible"
+                :trigger="trigger"
+                @click.stop
+                @mouseleave="unfocus"
+                placement="bottom-start"
+                :open-on-click="false"
+                class="suggestions"
+                small
+            >
+                <n-menu
+                    v-if="suggestions && suggestions.length"
+                    :accordion="false"
+                    :items="suggestions"
+                ></n-menu>
 
-            <n-div v-else padding="small">
-                There are not items matching your search
-            </n-div>
-        </n-popup>
+                <n-div v-else padding="small">
+                    There are not items matching your search
+                </n-div>
+            </n-popup>
+        </ClientOnly>
     </div>
 </template>
 
 <script>
-import NTextField from '../../../src/forms/NTextField';
-
+/**
+ * @todo For whatever reason this component is causing issues in the build. Need to investiage more.
+ */
 export default {
-    components: { NTextField },
     data () {
         return {
             query: '',
             focused: false,
             focusIndex: 0,
+            trigger: null,
+            visible: false,
         };
+    },
+
+    mounted () {
+        this.trigger = this.$refs.trigger.$el;
     },
 
     computed: {
@@ -155,6 +164,12 @@ export default {
             setTimeout(() => {
                 this.focused = false;
             }, 500);
+        },
+    },
+
+    watch: {
+        showSuggestions (value) {
+            this.visible = value;
         },
     },
 };

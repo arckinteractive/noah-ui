@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url(./wave.svg);
+  background-image: url(./wave.svg) !important;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -62,6 +62,7 @@ p code {
   background: var(--color-white);
   margin: var(--space-m) 0;
   box-shadow: var(--box-shadow-s);
+  max-width: calc(100vw - 100px);
 
   .demo {
     border-bottom: 3px solid var(--color-grey-border);
