@@ -9,7 +9,8 @@ export default (
         siteData, // site metadata
     },
 ) => {
-    //Vue.config.devtools = true;
+    Vue.config.devtools = true;
+    Vue.config.performance = true;
 
     Vue.use(NoahUi);
 

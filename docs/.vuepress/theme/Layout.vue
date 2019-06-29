@@ -72,7 +72,11 @@ export default {
     .nd-content {
         background: var(--color-white);
         box-shadow: var(--box-shadow-s);
-        padding: 24px 24px 24px 56px;
+        padding: var(--space-s) var(--space-m);
+
+        @media #{$is-tablet-up} {
+            padding: var(--space-m) var(--space-m) var(--space-m) var(--space-xl);
+        }
     }
 
     .nd-top, .nd-topbar {

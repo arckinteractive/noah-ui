@@ -9,11 +9,11 @@
 
 body {
   background-image: url(./wave.svg) !important;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 
   @media #{$is-desktop-up} {
-    background-position-y: -140px;
+    background-position-y: -140px !important;
   }
 }
 
@@ -32,11 +32,15 @@ body {
       vertical-align: middle;
       font-size: 0.5em;
       position: absolute;
-      right: 100%;
-      top: 50%;
       transform: translateY(-50%);
       margin: 0 var(--space-m);
       color: n-hsl(var(--hsl-grey-text), 0.7);
+      top: 50%;
+      right: 0;
+
+      @media #{$is-tablet-up} {
+        right: 100%;
+      }
     }
 
     &:hover {
@@ -62,11 +66,17 @@ p code {
   background: var(--color-white);
   margin: var(--space-m) 0;
   box-shadow: var(--box-shadow-s);
-  max-width: calc(100vw - 100px);
+  max-width: calc(100vw - calc(var(--space-m) * 2));
 
   .demo {
+    max-width: 100%;
     border-bottom: 3px solid var(--color-grey-border);
     padding: var(--space-m);
+  }
+
+  @media #{$is-mobile-down} {
+    max-width: 100vw;
+    margin: var(--space-m) calc(-1 * var(--space-m));
   }
 }
 
@@ -123,7 +133,4 @@ p code {
 
 div[class*="language-"].extra-class {
   border-left: 8px solid var(--color-grey-border);
-  margin: var(--space-m) 0;
-  max-width: 100%;
-  overflow: auto;
 }

@@ -16,6 +16,7 @@
   width: 100%;
   max-width: 85vw;
   z-index: 999;
+  padding: var(--space-m) 0;
 
   @media #{$is-tablet-up} {
     left: auto;

@@ -29,7 +29,7 @@ export default {
                 mode: 'text/x-vue',
                 theme: 'noah',
                 lineNumbers: true,
-                lineWrapping: true,
+                lineWrapping: false,
                 line: true,
                 readOnly: true,
             },

@@ -5,13 +5,20 @@
   background-color: var(--color-primary-fade);
   color: var(--color-black-text);
   font-family: var(--font-monospace);
-  font-size: var(--text-m);
-  line-height: calc(var(--text-m) + 8px);
   height: auto;
   border-radius: var(--radius-default);
   word-break: break-word;
-  max-width: 780px;
+  width: 100%;
   overflow-y: auto;
+  font-size: var(--text-s);
+  line-height: calc(var(--text-s) + 4px);
+  max-width: 100vw;
+
+  @media #{$is-tablet-up} {
+    max-width: calc(100vw - calc(var(--space-m) * 2));
+    font-size: var(--text-m);
+    line-height: calc(var(--text-m) + 8px);
+  }
 }
 
 .CodeMirror.cm-s-noah,
