@@ -5,11 +5,8 @@
 </template>
 
 <script>
-import NMenu from '../../../src/patterns/NMenu';
-
 export default {
     name: 'Sidebar',
-    components: { NMenu },
     computed: {
         items () {
             const resolveTree = (e) => {

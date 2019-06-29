@@ -9,6 +9,11 @@ export default (
         siteData, // site metadata
     },
 ) => {
+    if (process.env.NODE_ENV !== 'production') {
+        Vue.config.devtools = true;
+        Vue.config.performance = true;
+    }
+
     Vue.use(NoahUi);
 
     Vue.component('codemirror', async () => {

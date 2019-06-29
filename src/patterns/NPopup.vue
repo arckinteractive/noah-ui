@@ -77,6 +77,12 @@ export default {
                                     enabled: false,
                                 },
                             },
+                            flip: {
+                                behavior: ['left', 'bottom', 'top'],
+                            },
+                            preventOverflow: {
+                                boundariesElement: 'body',
+                            },
                         },
                     },
                 },

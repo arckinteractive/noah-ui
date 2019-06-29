@@ -1,6 +1,6 @@
 ---
 label: Control
-priority: 2
+priority: 3
 ---
 
 ## Control
