@@ -66,6 +66,8 @@ export default {
     .nd-content-col {
         @media #{$is-desktop-up} {
             padding: 0;
+            max-width: 100%;
+            overflow: hidden;
         }
     }
 
@@ -74,6 +76,7 @@ export default {
         box-shadow: var(--box-shadow-s);
         padding: var(--space-s) var(--space-m);
         max-width: 100vw;
+        width: 100%;
 
         @media #{$is-tablet-up} {
             padding: var(--space-m) var(--space-m) var(--space-m) var(--space-xl);
