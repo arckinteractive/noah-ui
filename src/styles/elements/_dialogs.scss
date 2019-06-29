@@ -7,7 +7,7 @@
 .n-dialog {
   background: #ffffff;
   min-width: 320px;
-  max-width: calc(100% - calc(2 * var(--grid-unit)));
+  max-width: calc(100vw - calc(2 * var(--grid-unit)));
   margin: auto;
   outline: none;
   overflow: hidden;

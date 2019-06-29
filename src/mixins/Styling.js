@@ -1,5 +1,7 @@
 const isValidAttrValue = (value) => {
-    const invalid = value === false
+    const invalid =
+        value === 'false'
+        || value === false
         || typeof value === 'undefined'
         || value === 'undefined'
         || value === null
