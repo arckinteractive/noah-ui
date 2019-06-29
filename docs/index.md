@@ -23,6 +23,10 @@ Scoped CSS is great in theory and has the potential of saving the world from cod
 
 It is also likely that you will want to reuse your CSS in templates and documents rendered server-side and third-party services - having CSS separate from components, in our opinion, provides more flexibility on all levels.
 
+## Mobile-First & Responsive
+
+NoahUI aims to be performant across a variety devices. Noah uses a dual approach, providing ways to target specific viewports both through JavaScript and CSS. 
+
 ## Flexible Forms
 
 One of the stumbling blocks of many frameworks is forms. One of the top priorities for Noah UI is to make it easy to add custom input types and form elements while maintaining uniform layout, validation and feedback logic. We have used several techniques to make it easy for projects to build their own form fields on top of our components.
@@ -31,6 +35,13 @@ One of the stumbling blocks of many frameworks is forms. One of the top prioriti
 
 NoahUI strives to be an accessible framework. Default color palette complies with WCAG contract ratio recommendations. Components are properly marked up and labelled in accordance with ARIA specifications. And above all, in the age of mobile, many have forgotten about keyboard accessbility - when building NoahUI, we wanted to allow keyboard-only navigation by providing consistent tab indexes, marking up forms in a way that does not hinder accessibility, reacting to specific keydown events etc.
 
+## SSR-Friendly
+
+We wanted NoahUI to be suitable for server-side rendering with frameworks such as VuePress and Nuxt.
+
+## Optimized for PageSpeed
+
+NoahUI does its best to reduce amount of work needed to improve PageSpeed score. Among other things, NoahUI uses intersection observers to lazy-load images, cloaks embeds to reduce amount of data loaded at runtime.  
  
 
 
