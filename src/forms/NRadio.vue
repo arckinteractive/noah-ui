@@ -85,7 +85,7 @@ export default {
             return {
                 [this.config.children.control]: true,
                 ...this.buildCssModifiers({
-                    labelled: this.$slots.label || this.$slots.default || this.label,
+                    labelled: !!(this.$slots.label || this.$slots.default || this.label),
                     checked: this.isChecked,
                 }),
             };
