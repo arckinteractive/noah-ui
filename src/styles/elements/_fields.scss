@@ -298,6 +298,9 @@ textarea {
 
 /** SELECT */
 .n-select {
+  --input-text: var(--field-text, var(--text-m));
+  --input-size: var(--field-size, var(--size-m));
+  --input-space: calc(var(--input-size) - var(--input-line-height));
   --select-min-width: 300px;
 
   position: relative;
@@ -350,6 +353,14 @@ textarea {
     border: none;
     box-shadow: none;
     background: transparent;
+
+  }
+
+  .n-control__placeholder {
+    height: var(--input-size);
+    padding: calc(var(--input-space) / 2) var(--input-space);
+    font-size: var(--input-text);
+    cursor: default;
   }
 
   .n-select__selection {
@@ -372,4 +383,8 @@ textarea {
   .n-tag {
     --tag-scale-ratio: 0.8;
   }
+}
+
+.n-select__control {
+  outline: none;
 }
