@@ -1,18 +1,27 @@
 <template>
-    <n-field v-bind="fieldProps" v-click-outside="hideSuggestions">
+    <n-field
+        v-bind="fieldProps"
+        v-click-outside="hideSuggestions"
+    >
         <template v-for="name in ['before', 'after', 'label', 'help', 'errors']">
             <slot :name="name" :slot="name"></slot>
         </template>
 
         <n-control
             v-bind="controlProps"
+            @click.native.stop="showSuggestions"
+            @focus.self.native="showSuggestions"
+            tabindex="0"
+            :class="config.children.control"
+            :id="inputProps.id"
+            ref="control"
         >
             <template v-for="name in ['prefixIcon', 'prefixLabel', 'suffixLabel']">
                 <slot :name="name" :slot="name"></slot>
             </template>
 
             <slot name="suffixIcon" slot="suffixIcon">
-                <n-icon :icon="toggleIcon" @click.native.stop="toggleSuggestions"></n-icon>
+                <n-icon :icon="toggleIcon"></n-icon>
             </slot>
 
             <slot
@@ -49,13 +58,17 @@
 
                         <div :class="config.children.input">
                             <input
+                                v-if="expanded"
                                 @focus="showSuggestions"
                                 type="text"
-                                :id="inputProps.id"
-                                :placeholder="placeholder"
+                                :placeholder="searchPlaceholder"
                                 v-model="searchKeyword"
                                 ref="search"
                             />
+
+                            <n-div v-else :class="config.children.placeholder">
+                                {{ placeholder }}
+                            </n-div>
                         </div>
                     </template>
 
@@ -76,13 +89,17 @@
 
                         <div v-else :class="config.children.input">
                             <input
+                                v-if="expanded"
                                 @focus="showSuggestions"
                                 type="text"
-                                :id="inputProps.id"
-                                :placeholder="placeholder"
+                                :placeholder="searchPlaceholder"
                                 v-model="searchKeyword"
                                 ref="search"
                             />
+
+                            <n-div v-else :class="config.children.placeholder">
+                                {{ placeholder }}
+                            </n-div>
                         </div>
                     </template>
 
@@ -134,7 +151,13 @@
 
                             <template v-else>
                                 <n-div v-if="!awaiting" padding="medium">
-                                    There are no options matching the criteria
+                                    <template v-if="searchKeyword">
+                                        There are no options matching the criteria
+                                    </template>
+
+                                    <template v-else>
+                                        Enter a search keyword
+                                    </template>
                                 </n-div>
 
                                 <n-tile v-if="canAddValue" :icon="config.icons.add" @click.stop="addValue">
@@ -169,6 +192,8 @@ export default {
                         input: 'n-select__input',
                         selection: 'n-select__selection',
                         dropdown: 'n-select__dropdown',
+                        control: 'n-select__control',
+                        placeholder: 'n-control__placeholder',
                     },
                     icons: {
                         expand: 'fas fa-chevron-down fa-xs',
@@ -227,6 +252,13 @@ export default {
          */
         multiple: {
             type: Boolean,
+        },
+        /**
+         * Text to show as the search input placeholder
+         */
+        searchPlaceholder: {
+            type: String,
+            default: 'Enter search keyword',
         },
     },
 
@@ -297,6 +329,9 @@ export default {
 
                 this.$nextTick(() => {
                     setTimeout(() => {
+                        // Let's remove focus so it doesn't refocus after selection is made
+                        this.$refs.control.$el.blur();
+
                         this.$focus(null, this.$refs.input.$el);
                     }, 200);
                 });
@@ -308,10 +343,6 @@ export default {
             this.searchKeyword = '';
 
             this.$blur();
-        },
-
-        toggleSuggestions () {
-            this.expanded ? this.hideSuggestions() : this.showSuggestions();
         },
 
         clearAll () {
