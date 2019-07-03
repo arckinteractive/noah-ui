@@ -83,7 +83,7 @@ export default {
                     if (!isValidAttrValue(value)) {
                         return acc;
                     }
-                    
+
                     if (typeof value !== 'string' && !!value) {
                         className = dashifyAttrName(classBase);
                         className = map[className] || className;
