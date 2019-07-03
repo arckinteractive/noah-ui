@@ -1,6 +1,5 @@
 const isValidAttrValue = (value) => {
-    const invalid =
-        value === 'false'
+    const invalid = value === 'false'
         || value === false
         || typeof value === 'undefined'
         || value === 'undefined'
@@ -80,6 +79,10 @@ export default {
                     const classBase = `${modifierPrefix}${name}`;
 
                     const value = data[name];
+
+                    if (!isValidAttrValue(value)) {
+                        return acc;
+                    }
 
                     if (typeof value !== 'string' && !!value) {
                         className = dashifyAttrName(classBase);
