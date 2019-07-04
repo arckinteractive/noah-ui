@@ -10,7 +10,12 @@
             </template>
 
             <slot name="input" slot="default" v-bind="inputProps" :value="inputValue">
-                <div ref="recaptcha"></div>
+                <div
+                    ref="recaptcha"
+                    :data-sitekey="$recaptcha.siteKey"
+                    :data-theme="theme"
+                    :data-size="size"
+                ></div>
             </slot>
         </n-control>
     </n-field>
@@ -35,7 +40,7 @@ export default {
          * if you wish to verify the captcha before the form data is submitted to the server,
          * you can provide the function that will receive a recaptcha response as an argument and return a promise
          */
-        verifier: {
+        verifyCallback: {
             type: Function,
         },
 
@@ -57,31 +62,44 @@ export default {
     },
 
     mounted () {
-        this.$recaptcha.load().then((recaptcha) => {
-            this.widgetId = recaptcha.render(this.$refs.recaptcha, {
-                sitekey: this.$recaptcha.siteKey,
-                size: this.size,
-                theme: this.theme,
-                callback: this.onSuccess,
-                expiredCallback: this.onExpire,
-                errorCallback: this.onError,
+        this.$nextTick(() => {
+            this.$recaptcha.load().then((recaptcha) => {
+                this.widgetId = recaptcha.render(this.$refs.recaptcha, {
+                    callback: this.onSuccess,
+                    expiredCallback: this.onExpire,
+                    errorCallback: this.onError,
+                });
             });
         });
 
-        this.validationRules.push(validators.custom((value) => {
-            if (!value) {
-                throw new Error('Please solve the captcha');
-            }
-        }));
-
-        if (this.verifier) {
-            this.validationRules.push(validators.custom((value) => {
-                if (this.isVerified) {
-                    return Promise.resolve();
+        this.validationRules.push(
+            validators.custom((value) => {
+                if (!value) {
+                    throw new Error('Please solve the captcha');
                 }
+            }),
+        );
 
-                return this.verifier(value);
-            }));
+        if (this.verifyCallback) {
+            this.validationRules.push(
+                validators.custom((value) => {
+                    if (this.isVerified) {
+                        return Promise.resolve(true);
+                    }
+
+                    return new Promise((resolve, reject) => {
+                        this.verifyCallback(value)
+                            .then((response) => {
+                                this.isVerified = true;
+                                resolve(response);
+                            })
+                            .catch((err) => {
+                                this.reset();
+                                reject(err);
+                            });
+                    });
+                }),
+            );
         }
     },
 

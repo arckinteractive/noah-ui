@@ -18,9 +18,9 @@
                         />
 
                         <n-recaptcha
-                            v-if="model.message"
+                            v-if="!!model.message"
                             v-model="model.captcha"
-                            :verifier="verifyCaptcha"
+                            :verify-callback="verifyCaptcha"
                             ref="recaptcha"
                         />
                     </n-div>
@@ -40,22 +40,13 @@
                     </template>
                 </n-form>
 
-                <div class="language-js extra-class">
-                    <pre class="language-js">{{ JSON.stringify(model, null, 4) }}</pre>
-                </div>
+                <div>{{ JSON.stringify(model, null, 4) }}</div>
             </n-div>
         </n-div>
     </n-div>
 </template>
 
 <script>
-import Vue from 'vue';
-import NRecaptcha from '../../../../src/extensions/NRecaptcha';
-
-Vue.use(NRecaptcha, {
-    siteKey: '6LcoUKIUAAAAABUikWoT_q3KF21LiPhU4g7rKL6O',
-});
-
 export default {
     data () {
         return {

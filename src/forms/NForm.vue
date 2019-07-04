@@ -61,7 +61,7 @@ export default {
     methods: {
         async validateForm () {
             const promises = this.formElFields.map(async (field) => {
-                return field.validate();
+                return Promise.resolve(field.validate());
             });
 
             return Promise.all(promises);
