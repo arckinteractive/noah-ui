@@ -1,5 +1,7 @@
 import NoahUi from '../../src/main.js';
 import './docs.scss';
+import NRecaptcha from '../../src/extensions/NRecaptcha';
+import NCodemirror from '../../src/extensions/NCodemirror';
 
 export default (
     {
@@ -16,14 +18,9 @@ export default (
 
     Vue.use(NoahUi);
 
-    Vue.component('codemirror', async () => {
-        const install = await import('./codemirror.js');
+    Vue.use(NCodemirror);
 
-        await import('../../node_modules/codemirror/mode/htmlmixed/htmlmixed.js');
-        await import('../../node_modules/codemirror/mode/vue/vue.js');
-
-        return install.default({
-            // options go here
-        });
+    Vue.use(NRecaptcha, {
+        siteKey: '6LcoUKIUAAAAABUikWoT_q3KF21LiPhU4g7rKL6O',
     });
 }

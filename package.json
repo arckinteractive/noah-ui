@@ -13,6 +13,7 @@
     "deploy": "./.scripts/deploy.sh"
   },
   "dependencies": {
+    "codemirror": "^5.48.0",
     "core-js": "^2.6.9",
     "lodash.debounce": "^4.0.8",
     "markdown-it": "^8.4.2",
@@ -22,7 +23,6 @@
     "tiny-slider": "^2.9.2",
     "vue": "^2.6.10",
     "vue-click-outside": "^1.0.7",
-    "vue-codemirror": "^4.0.6",
     "vue-meta": "^1.6.0"
   },
   "devDependencies": {
