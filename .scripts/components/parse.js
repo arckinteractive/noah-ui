@@ -3,7 +3,28 @@ import fs from 'fs';
 import path from 'path';
 import filemap from './filemap';
 
-const components = filemap();
+const generateComponentSpec = () => {
+    const componentInfo = filemap.getComponentInfo([
+        'elements',
+        'forms',
+        'patterns',
+        'plugins',
+        'apps',
+    ]);
+
+    filemap.writeSpecFile({
+        outputFilePath: path.resolve(__dirname, '../../src/noah.components.json'),
+        componentInfo,
+    });
+
+    return componentInfo;
+};
+
+const generateExtensionSpec = () => {
+    return filemap.getComponentInfo(['extensions']);
+};
+
+const components = Object.assign({}, generateComponentSpec(), generateExtensionSpec());
 
 const parsers = Object.keys(components).map((name) => {
     const component = components[name];
