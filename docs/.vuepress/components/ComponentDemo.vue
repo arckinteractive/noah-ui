@@ -5,9 +5,11 @@
         </div>
 
         <div class="code">
-            <ClientOnly>
-                <codemirror :options="cmOptions" :value="raw"></codemirror>
-            </ClientOnly>
+            <n-codemirror
+                :options="cmOptions"
+                :modes="cmModes"
+                v-model="raw"
+            ></n-codemirror>
         </div>
     </n-module>
 </template>
@@ -33,6 +35,10 @@ export default {
                 line: true,
                 readOnly: true,
             },
+            cmModes: [
+                'htmlmixed',
+                'vue',
+            ],
         };
     },
 

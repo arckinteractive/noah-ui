@@ -2,21 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import loader from '../loader';
 
-export default () => {
-    const filePath = path.resolve(__dirname, '../../src/noah.components.json');
-
-    if (!fs.existsSync(filePath)) {
-        fs.closeSync(fs.openSync(filePath, 'w', '0666'));
-    }
-
-    const groups = [
-        'elements',
-        'forms',
-        'patterns',
-        'plugins',
-        'apps',
-    ];
-
+const getComponentInfo = (groups) => {
     const components = {};
 
     groups.forEach((group) => {
@@ -31,10 +17,20 @@ export default () => {
         });
     });
 
-    const buffer = Buffer.from(JSON.stringify(components));
-
-    fs.writeFileSync(filePath, buffer);
-
     return components;
-}
+};
 
+const writeSpecFile = ({ componentInfo, outputFilePath }) => {
+    if (!fs.existsSync(outputFilePath)) {
+        fs.closeSync(fs.openSync(outputFilePath, 'w', '0666'));
+    }
+
+    const buffer = Buffer.from(JSON.stringify(componentInfo));
+
+    fs.writeFileSync(outputFilePath, buffer);
+};
+
+export default {
+    getComponentInfo,
+    writeSpecFile,
+};
