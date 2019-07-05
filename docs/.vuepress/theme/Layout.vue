@@ -41,7 +41,7 @@ export default {
 
     .nd-layout {
         position: relative;
-        max-width: 1080px;
+        max-width: 1120px;
         margin: 0 auto;
 
         @media #{$is-desktop-up} {
