@@ -1,18 +1,17 @@
 <template>
-    <n-div flex center-center>
+    <n-div flex center-top>
         <n-div col sm:12 md:6>
             <n-div flex stacked stretched>
-                <div>Type in a message to see the captcha</div>
-
                 <n-form
                     @submit="submitForm"
                     @done="formSubmitted"
                 >
                     <n-div flex gap="small" stacked stretched>
                         <n-text-field
+                            label="Message"
                             v-model="model.message"
                             type="textarea"
-                            placeholder="Your Message"
+                            placeholder="Type a message to initialize captcha"
                             required
                             :validation-events="[]"
                         />
@@ -39,9 +38,16 @@
                         </n-div>
                     </template>
                 </n-form>
-
-                <div>{{ JSON.stringify(model, null, 4) }}</div>
             </n-div>
+        </n-div>
+
+        <n-div col sm:12 md:6>
+            <n-codemirror
+                label="Model data"
+                :options="{ readOnly: true, mode: 'application/json' }"
+                :modes="['javascript']"
+                :value="JSON.stringify(model, null, 2)"
+            />
         </n-div>
     </n-div>
 </template>
@@ -83,7 +89,3 @@ export default {
     },
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>

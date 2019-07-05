@@ -24,12 +24,28 @@
 <script>
 import validators from '../utils/validators';
 import InputMixin from '../mixins/Input';
+import StylingMixin from '../mixins/Styling';
 
+/**
+ * Please see [ReCaptcha docs](https://developers.google.com/recaptcha/docs/verify) in order to implement server-side validation of the response.
+ *
+ * `NRecapatcha` gives you two options for server-side validation:
+ *
+ *  - Use `v-model` and submit captcha response with your form, and perform validation before processing remaining form data
+ *  - Use `verifyCallback` prop to provide a function that will verify the response on the server and prevent form
+ *    submission if verification fails. The function should return a promise, and throw an error in case of failed validation.
+ */
 export default {
-    mixins: [InputMixin],
+    mixins: [InputMixin, StylingMixin],
 
     data () {
         return {
+            localConfig: {
+                name: 'NRecaptcha',
+                config: {
+                    baseClass: 'n-recaptcha',
+                },
+            },
             widgetId: null,
             isVerified: false,
         };
@@ -140,7 +156,3 @@ export default {
     },
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>
