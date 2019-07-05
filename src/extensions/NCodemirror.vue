@@ -18,12 +18,24 @@
 
 <script>
 import InputMixin from '../mixins/Input';
+import StylingMixin from '../mixins/Styling';
 
+/**
+ * CodeMirror is a wonderful utility for highlighting code
+ * This component provides a way to render a piece of code in a human readable way.
+ * By default, the code will be editable by the user; to make it a read-only, use the `readOnly` config option
+ */
 export default {
-    mixins: [InputMixin],
+    mixins: [InputMixin, StylingMixin],
 
     data () {
         return {
+            localConfig: {
+                name: 'NCodemirror',
+                config: {
+                    baseClass: 'n-codemirror',
+                },
+            },
             instance: null,
         };
     },
@@ -31,6 +43,7 @@ export default {
     props: {
         /**
          * CodeMirror Config Options
+         * See the [docs](https://codemirror.net/doc/manual.html#config)
          */
         options: {
             type: Object,
@@ -46,6 +59,7 @@ export default {
 
         /**
          * CodeMirror modes
+         * See the [docs](https://codemirror.net/mode/index.html)
          */
         modes: {
             type: Array,
@@ -86,7 +100,7 @@ export default {
     },
 
     watch: {
-        internalValue () {
+        value () {
             this.setValue(this.value);
         },
     },

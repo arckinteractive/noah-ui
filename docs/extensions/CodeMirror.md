@@ -4,6 +4,8 @@ label: CodeMirror
 
 ## Code Viewer and Editor
 
+<ComponentMeta name="NCodemirror" />
+
 ### Installation
 
 ```js
