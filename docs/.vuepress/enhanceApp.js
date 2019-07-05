@@ -2,6 +2,7 @@ import NoahUi from '../../src/main.js';
 import './docs.scss';
 import NRecaptcha from '../../src/extensions/NRecaptcha';
 import NCodemirror from '../../src/extensions/NCodemirror';
+import NStripe from '../../src/extensions/NStripe';
 
 export default (
     {
@@ -22,5 +23,10 @@ export default (
 
     Vue.use(NRecaptcha, {
         siteKey: '6LcoUKIUAAAAABUikWoT_q3KF21LiPhU4g7rKL6O',
+    });
+
+    Vue.use(NStripe, {
+        version: 'v3',
+        publishableKey: 'pk_test_KgG2pvTTHhQXjfVxiT9XXFBl',
     });
 }
