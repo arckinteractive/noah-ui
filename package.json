@@ -1,7 +1,7 @@
 {
   "name": "@arckinteractive/noah-ui",
   "version": "0.1.0",
-  "license": "GPL3",
+  "license": "GPL-3.0"
   "main": "src/main.js",
   "scripts": {
     "lint": "vue-cli-service lint",
