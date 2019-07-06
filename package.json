@@ -1,7 +1,7 @@
 {
   "name": "@arckinteractive/noah-ui",
   "version": "0.1.0",
-  "license": "MIT",
+  "license": "GPL3",
   "main": "src/main.js",
   "scripts": {
     "lint": "vue-cli-service lint",
@@ -94,5 +94,20 @@
     "all": true,
     "sourceMap": true,
     "report-dir": "./coverage"
-  }
+  },
+  "description": "Vue.js framework for web-artisans brought to you by [Arck Interactive](https://arckinteractive.com/).",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arckinteractive/noah-ui/"
+  },
+  "keywords": [
+    "vue",
+    "ui",
+    "framework"
+  ],
+  "author": "Arck Interactive"
 }
