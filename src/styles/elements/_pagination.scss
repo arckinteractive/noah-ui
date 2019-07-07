@@ -1,0 +1,26 @@
+.n-pagination {
+  margin: 1rem auto;
+
+  .n-button {
+    font-size: var(--text-s);
+    font-weight: var(--weight-bold);
+  }
+
+  .n-button.disabled {
+    cursor: not-allowed;
+    color: var(--color-grey-text);
+
+    &:hover {
+      background: none;
+    }
+  }
+  .n-button.active {
+    cursor: not-allowed;
+    background: var(--color-grey-background);
+    color: var(--color-primary);
+
+    &:hover {
+      background: var(--color-grey-background);
+    }
+  }
+}

@@ -1,10 +1,13 @@
 <template>
     <div class="component-meta">
         <n-text level="6">{{ meta.name }}</n-text>
-        <p v-html="markdown(meta.description)" v-if="meta.description"></p>
+        <div>
+            <p v-html="markdown(meta.description)" v-if="meta.description"></p>
+        </div>
 
         <n-module class="component-meta" type="demo">
             <div slot="header"></div>
+
             <n-tabs :items="tabs">
                 <component-props :data="meta.props" slot="props"></component-props>
                 <component-config :data="configOptions" slot="config"></component-config>

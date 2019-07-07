@@ -1,6 +1,6 @@
 <template>
     <n-module title="Lorem Ipsum" type="card">
-        <n-img slot="media" src="https://bit.ly/2YT8P1D"></n-img>
+        <n-img slot="media" src="https://bit.ly/2YT8P1D" :lazy-load="false"></n-img>
 
         <n-div padding="medium">
             Morbi vitae finibus sem. Duis mollis lorem quis lorem aliquet tincidunt. Aliquam erat volutpat. In

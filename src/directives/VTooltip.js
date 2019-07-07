@@ -23,28 +23,24 @@ export default {
 
             vnode.context.$root.$el.appendChild(instance.$el);
 
-            listeners.attach(el, 'mouseenter', () => {
-                vm.$data.originalEvent = 'mouseenter';
-                vm.$data.isVisible = true;
-            });
+            const events = [
+                ['mouseenter', 'mouseleave'],
+                ['focus', 'blur'],
+                ['touchstart', 'touchend'],
+            ];
 
-            listeners.attach(el, 'mouseleave', () => {
-                if (vm.$data.originalEvent === 'mouseenter') {
-                    vm.$data.originalEvent = null;
-                    vm.$data.isVisible = false;
-                }
-            });
+            events.forEach((pair) => {
+                listeners.attach(el, pair[0], () => {
+                    [vm.$data.originalEvent] = pair;
+                    vm.$data.isVisible = true;
+                });
 
-            listeners.attach(el, 'focus', () => {
-                vm.$data.originalEvent = 'focus';
-                vm.$data.isVisible = true;
-            });
-
-            listeners.attach(el, 'blur', () => {
-                if (vm.$data.originalEvent === 'focus') {
-                    vm.$data.originalEvent = null;
-                    vm.$data.isVisible = false;
-                }
+                listeners.attach(el, pair[1], () => {
+                    if (vm.$data.originalEvent === pair[0]) {
+                        vm.$data.originalEvent = null;
+                        vm.$data.isVisible = false;
+                    }
+                });
             });
         });
     },

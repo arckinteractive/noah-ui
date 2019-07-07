@@ -5,6 +5,7 @@ import Confirm from './plugins/Confirm';
 import Logger from './plugins/Logger';
 import Alert from './plugins/Alert';
 import Focus from './plugins/Focus';
+import Popper from './plugins/Popper';
 
 export default {
     install (Vue, options) {
@@ -21,6 +22,7 @@ export default {
         Vue.use(Logger, config);
         Vue.use(Alert, config);
         Vue.use(Focus, config);
+        Vue.use(Popper, config);
 
         Object.keys(config.components).forEach(async (componentName) => {
             const opts = config.components[componentName];

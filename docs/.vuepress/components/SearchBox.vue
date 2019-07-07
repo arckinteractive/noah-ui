@@ -1,7 +1,14 @@
 <template>
     <div class="search-box">
-        <n-div ref="trigger">
+        <n-popup
+            :visible="showSuggestions"
+            placement="bottom-start"
+            :open-on-click="false"
+            class="suggestions"
+            small
+        >
             <n-text-field
+                slot="trigger"
                 @keyup.down="onDown"
                 @keyup.enter="go(focusIndex)"
                 @keyup.up="onUp"
@@ -10,59 +17,45 @@
                 aria-label="Search"
                 autocomplete="off"
                 placeholder="Search"
-                icon="fas fa-search"
+                prefix-icon="fas fa-search"
                 spellcheck="false"
                 v-model="query"
-            />
-        </n-div>
-
-        <ClientOnly>
-            <n-popup
-                v-model="visible"
-                :trigger="trigger"
-                @click.stop
-                @mouseleave="unfocus"
-                placement="bottom-start"
-                :open-on-click="false"
-                class="suggestions"
-                small
             >
-                <n-menu
-                    v-if="suggestions && suggestions.length"
-                    :accordion="false"
-                    :items="suggestions"
-                ></n-menu>
+                <n-icon
+                    v-if="query"
+                    icon="fas fa-times"
+                    @click.native="clearSearch"
+                    slot="suffixIcon"
+                ></n-icon>
+            </n-text-field>
 
-                <n-div v-else padding="small">
-                    There are not items matching your search
-                </n-div>
-            </n-popup>
-        </ClientOnly>
+            <n-menu
+                v-if="suggestions && suggestions.length"
+                :accordion="false"
+                :items="suggestions"
+                @click.native="clearSearch"
+            ></n-menu>
+
+            <n-div v-else padding="small">
+                There are not items matching your search
+            </n-div>
+        </n-popup>
     </div>
 </template>
 
 <script>
-/**
- * @todo For whatever reason this component is causing issues in the build. Need to investiage more.
- */
 export default {
     data () {
         return {
             query: '',
             focused: false,
             focusIndex: 0,
-            trigger: null,
-            visible: false,
         };
-    },
-
-    mounted () {
-        this.trigger = this.$refs.trigger.$el;
     },
 
     computed: {
         showSuggestions () {
-            return this.focused && this.query.length > 0;
+            return this.query.length > 0;
         },
 
         suggestions () {
@@ -164,6 +157,10 @@ export default {
             setTimeout(() => {
                 this.focused = false;
             }, 500);
+        },
+
+        clearSearch () {
+            this.query = '';
         },
     },
 

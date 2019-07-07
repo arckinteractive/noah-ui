@@ -75,7 +75,7 @@ export default {
             },
 
             methods: {
-                isServer() {
+                isServer () {
                     return typeof window === 'undefined';
                 },
 
@@ -108,6 +108,22 @@ export default {
 
                         this.$data.$intersectionObserver.observe($el);
                     }
+                },
+
+                resolveForViewport (conf) {
+                    if (this.isHdUp && conf.xl) {
+                        return conf.xl;
+                    }
+
+                    if (this.isDesktopUp && conf.lg) {
+                        return conf.lg;
+                    }
+
+                    if (this.isTabletUp && conf.md) {
+                        return conf.md;
+                    }
+
+                    return conf.sm;
                 },
             },
         });

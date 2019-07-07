@@ -46,3 +46,11 @@ export default {
 ### Simple Table
 
 <ComponentDemo name="SimpleTable" />
+
+### Table With Custom Cells (Slots)
+
+<ComponentDemo name="TableSlots" />
+
+### Table With Expanding Rows
+
+<ComponentDemo name="TableExpand" />

@@ -5,6 +5,8 @@
             @click.native.stop="handleClick"
             @mouseenter.native="handleMouseenter"
             @mouseleave.native="handleMouseleave"
+            @touchstart.native="handleMouseenter"
+            @touchend.native="handleMouseleave"
             ref="trigger"
         >
             <!-- Can be used instead of passing the trigger ref as a prop -->
@@ -44,13 +46,9 @@
 <script>
 import Styling from '../mixins/Styling';
 import ClickOutside from 'vue-click-outside';
-import Popper from 'popper.js/dist/umd/popper.js';
 
 /**
  * Popups are hidden elements that can be displayed conditionally as in a floating layer
- *
- * Note that Popups can only be rendered client-side. You will need to wrap <n-popup> with a <ClientOnly> or other no-ssr
- * wrapper provided by your SSR framework.
  */
 export default {
     mixins: [Styling],
@@ -77,13 +75,8 @@ export default {
                                     enabled: false,
                                 },
                             },
-                            flip: {
-                                behavior: ['left', 'bottom', 'top'],
-                            },
-                            preventOverflow: {
-                                boundariesElement: 'body',
-                            },
                         },
+                        eventsEnabled: false,
                     },
                 },
             },
@@ -112,14 +105,21 @@ export default {
          * DOM element to attach this popup to
          */
         trigger: {
-            type: Element,
+            type: null,
+            validator (value) {
+                return value instanceof Element;
+            },
         },
         /**
          * Dropdown placement, e.g. 'top', 'top-end' etc.
-         * See popper.js documentation.
+         * See popper.js documentation for a list of possible placements.
+         *
+         * Given erradic flip behavior of the popper, this can be passed as an object
+         * of placements corresponding to viewport `{ sm: 'top-start', md: 'top' }`
+         * Passing placement as an object will disable flip and preventOverflow
          */
         placement: {
-            type: String,
+            type: [String, Object],
             default: 'auto',
         },
         /**
@@ -155,6 +155,12 @@ export default {
         message: {
             type: String,
         },
+        /**
+         * A function that can be used to filter the popper config for this instance
+         */
+        configCallback: {
+            type: Function,
+        },
     },
 
     mounted () {
@@ -178,6 +184,31 @@ export default {
                 visible: this.isVisible,
             };
         },
+
+        popperConfig () {
+            const config = Object.assign({}, this.config.popper);
+
+            if (typeof this.placement === 'object') {
+                config.placement = this.resolveForViewport(this.placement);
+                config.modifiers.flip = { enabled: false };
+                config.modifiers.preventOverflow = { enabled: false };
+            } else {
+                config.placement = this.placement;
+            }
+
+            if (this.arrow) {
+                config.modifiers.arrow = {
+                    enabled: true,
+                    element: this.$refs.arrow,
+                };
+            }
+
+            if (typeof this.configCallback === 'function') {
+                return this.configCallback(config);
+            }
+
+            return config;
+        },
     },
 
     methods: {
@@ -185,29 +216,20 @@ export default {
             this.isVisible = true;
 
             this.$nextTick(() => {
-                if (!this.popper) {
-                    const config = this.config.popper;
-
-                    if (this.arrow) {
-                        config.modifiers.arrow = {
-                            enabled: true,
-                            element: this.$refs.arrow,
-                        };
+                this.$popper.load().then((Popper) => {
+                    if (!this.popper) {
+                        this.popper = new Popper(this.triggerEl, this.$refs.popup.$el, this.popperConfig);
                     }
 
-                    this.popper = new Popper(this.triggerEl, this.$refs.popup.$el, {
-                        placement: this.placement,
-                        ...config,
-                    });
-                }
+                    this.popper.scheduleUpdate();
 
-                this.popper.scheduleUpdate();
+                    setTimeout(() => {
+                        this.$emit('open');
 
-                this.$emit('open');
-
-                setTimeout(() => {
-                    this.$focus(null, this.$refs.popup.$el);
-                }, 200);
+                        this.triggerEl.focus();
+                        this.$focus(this.triggerEl, this.$refs.popup.$el);
+                    }, 250);
+                });
             });
         },
 

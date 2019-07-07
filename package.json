@@ -35,6 +35,8 @@
     "@vue/cli-service": "^3.8.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "@vuedoc/parser": "^2.0.0-beta.4",
+    "@vuepress/plugin-google-analytics": "^1.0.0-rc.1",
+    "@vuepress/plugin-pwa": "^1.0.0-rc.1",
     "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.4",
@@ -66,7 +68,7 @@
     "url-loader": "^1.1.2",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
-    "vuepress": "^0.14.11",
+    "vuepress": "^1.0.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"

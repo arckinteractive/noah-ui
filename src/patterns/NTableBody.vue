@@ -5,15 +5,16 @@
             <tr :class="getRowStyle(row, index)" :key="index">
                 <td v-if="expand">
                     <n-button @click="row.expanded = !row.expanded" circle ghost aria-label="Toggle Row">
-                        <i :class="row.expanded ? 'fa-angle-down' : 'fa-angle-right'" class="fas"></i>
+                        <i :class="row.expanded ? config.icons.collapse : config.icons.expand"></i>
                     </n-button>
                 </td>
 
                 <td
-                    :key="header.prop"
                     v-for="header in headers"
+                    :key="header.prop"
+                    :class="getCellStyle(row, header)"
                 >
-                    <n-div :text-align="header.centered ? 'center' : 'left'">
+                    <n-div :class="config.children.content">
                         <template v-if="!header.hidden">
                             <slot :name="header.prop" v-bind="row">
                                 {{ row.item[header.prop] }}
@@ -45,7 +46,8 @@
 import Styling from '../mixins/Styling';
 
 /**
- * Table body wraps table rows
+ * Table body contains rows of the table. Each row represents an item in the collection. Row cells can be altered using
+ * scoped slots, or rendered automagically from item props.
  */
 export default {
     mixins: [Styling],
@@ -56,6 +58,13 @@ export default {
                 name: 'NTableBody',
                 config: {
                     baseClass: 'n-table-body',
+                    children: {
+                        content: 'n-table__cell-content',
+                    },
+                    icons: {
+                        expand: 'fas fa-angle-right',
+                        collapse: 'fas fa-angle-down',
+                    },
                 },
             },
             rows: [],
@@ -63,22 +72,41 @@ export default {
     },
 
     props: {
+        /**
+         * An array of header definitions
+         */
         headers: {
             type: Array,
             required: true,
         },
-
+        /**
+         * An array of item objects
+         */
         items: {
             type: Array,
             required: true,
         },
-
+        /**
+         * Add an expandable column
+         */
         expand: {
             type: Boolean,
             default: false,
         },
-
+        /**
+         * Callback to resolve row classes.
+         *
+         * Function will receive `{row, index}` as argument and should return an array of classes
+         */
         rowStyle: {
+            type: Function,
+        },
+        /**
+         * Callback to resolve cell classes.
+         *
+         * Function will receive `{row, header}` as argument and should return an array of classes
+         */
+        cellStyle: {
             type: Function,
         },
     },
@@ -92,7 +120,22 @@ export default {
                 })
                 : [];
 
-            selectors.push(index % 2 ? '--odd' : '--even');
+            selectors.push(index % 2 ? 'odd' : 'even');
+
+            return selectors;
+        },
+
+        getCellStyle (row, header) {
+            const selectors = this.cellStyle
+                ? this.cellStyle({
+                    row,
+                    header,
+                })
+                : [];
+
+            if (header.centered) {
+                selectors.push('centered');
+            }
 
             return selectors;
         },

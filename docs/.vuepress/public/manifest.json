@@ -1,0 +1,9 @@
+{
+  "name": "NoahUI Docs",
+  "short_name": "NoahUI",
+  "theme_color": "#4e668d",
+  "background_color": "#4e668d",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/"
+}
