@@ -44,7 +44,6 @@
 <script>
 import Styling from '../mixins/Styling';
 import ClickOutside from 'vue-click-outside';
-import Popper from 'popper.js/dist/umd/popper.js';
 
 /**
  * Popups are hidden elements that can be displayed conditionally as in a floating layer
@@ -112,7 +111,7 @@ export default {
          * DOM element to attach this popup to
          */
         trigger: {
-            type: Element,
+            type: Object,
         },
         /**
          * Dropdown placement, e.g. 'top', 'top-end' etc.
@@ -185,29 +184,31 @@ export default {
             this.isVisible = true;
 
             this.$nextTick(() => {
-                if (!this.popper) {
-                    const config = this.config.popper;
+                this.$popper.load().then((Popper) => {
+                    if (!this.popper) {
+                        const config = this.config.popper;
 
-                    if (this.arrow) {
-                        config.modifiers.arrow = {
-                            enabled: true,
-                            element: this.$refs.arrow,
-                        };
+                        if (this.arrow) {
+                            config.modifiers.arrow = {
+                                enabled: true,
+                                element: this.$refs.arrow,
+                            };
+                        }
+
+                        this.popper = new Popper(this.triggerEl, this.$refs.popup.$el, {
+                            placement: this.placement,
+                            ...config,
+                        });
                     }
 
-                    this.popper = new Popper(this.triggerEl, this.$refs.popup.$el, {
-                        placement: this.placement,
-                        ...config,
-                    });
-                }
+                    this.popper.scheduleUpdate();
 
-                this.popper.scheduleUpdate();
+                    this.$emit('open');
 
-                this.$emit('open');
-
-                setTimeout(() => {
-                    this.$focus(null, this.$refs.popup.$el);
-                }, 200);
+                    setTimeout(() => {
+                        this.$focus(null, this.$refs.popup.$el);
+                    }, 200);
+                });
             });
         },
 
