@@ -40,6 +40,11 @@ img {
   vertical-align: middle;
 }
 
+hr {
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: var(--color-grey-border);
+}
 [tabindex="-1"] {
   outline: none;
 }

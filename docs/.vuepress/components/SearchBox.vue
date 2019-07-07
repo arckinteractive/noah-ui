@@ -44,9 +44,6 @@
 </template>
 
 <script>
-/**
- * @todo For whatever reason this component is causing issues in the build. Need to investiage more.
- */
 export default {
     data () {
         return {

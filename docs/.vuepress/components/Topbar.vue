@@ -18,12 +18,43 @@
                 attachment="right"
                 v-model="showDrawer"
             >
+                <n-div padding="medium">
+                    <n-button
+                        outlined
+                        primary
+                        href="https://github.com/arckinteractive/noah-ui"
+                        target="_blank"
+                        text="Fork & Go"
+                        icon="fab fa-github"
+                        style="width: 100%"
+                    ></n-button>
+                </n-div>
+
+                <hr />
+
+                <n-div padding="medium">
+                    <SearchBox style="width: 100%"/>
+                </n-div>
+
+                <hr />
+
                 <Sidebar/>
             </n-drawer>
         </template>
 
         <template v-else>
-            <SearchBox />
+            <n-div flex right-center>
+                <n-button
+                    outlined
+                    white
+                    href="https://github.com/arckinteractive/noah-ui"
+                    target="_blank"
+                    text="Fork & Go"
+                    icon="fab fa-github"
+                ></n-button>
+
+                <SearchBox/>
+            </n-div>
         </template>
     </n-div>
 </template>
