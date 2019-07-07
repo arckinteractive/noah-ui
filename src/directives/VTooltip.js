@@ -31,7 +31,7 @@ export default {
 
             events.forEach((pair) => {
                 listeners.attach(el, pair[0], () => {
-                    vm.$data.originalEvent = pair[0];
+                    [vm.$data.originalEvent] = pair;
                     vm.$data.isVisible = true;
                 });
 
