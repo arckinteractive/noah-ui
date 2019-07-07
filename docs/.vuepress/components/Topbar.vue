@@ -21,6 +21,10 @@
                 <Sidebar/>
             </n-drawer>
         </template>
+
+        <template v-else>
+            <SearchBox />
+        </template>
     </n-div>
 </template>
 
