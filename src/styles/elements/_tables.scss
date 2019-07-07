@@ -35,6 +35,7 @@
   border: none;
   border-radius: var(--radius-default);
   border-spacing: 0;
+  table-layout: fixed;
 
   .n-table__th {
     vertical-align: middle;
@@ -96,7 +97,7 @@
 
   tr {
     td, th {
-      font-size: var(--text-s);
+      font-size: 80%;
       line-height: normal;
       vertical-align: middle;
       word-break: break-word;
@@ -106,6 +107,11 @@
 
       &.centered {
         text-align: center;
+
+        .n-table__cell-content {
+          margin: 0 auto;
+          display: inline-block;
+        }
       }
 
       &.expanded {

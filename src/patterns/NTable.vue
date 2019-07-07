@@ -1,14 +1,14 @@
 <template>
     <div :class="config.children.wrapper">
         <table v-bind="filteredAttrs">
-            <slot name="headers">
+            <slot name="headers" v-bind="$props" :change-sort="changeSort">
                 <n-table-head
                     @sort="changeSort"
                     v-bind="$props"
                 ></n-table-head>
             </slot>
 
-            <slot>
+            <slot v-bind="$props">
                 <n-table-body
                     v-bind="$props"
                 ></n-table-body>
