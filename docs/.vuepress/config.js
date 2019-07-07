@@ -3,7 +3,17 @@ module.exports = {
     description: 'Vue Framework for Apocalyptic Schedules',
     base: process.env.BUILD_BASE || '/',
     plugins: [
-        ['@vuepress/pwa'],
+        [
+            '@vuepress/pwa',
+            {
+                serviceWorker: true,
+                updatePopup: {
+                    message: 'Docs have been updated since your last visit',
+                    buttonText: 'Refresh',
+                },
+            },
+
+        ],
         [
             '@vuepress/google-analytics',
             {
