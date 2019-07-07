@@ -11,7 +11,13 @@
                 <n-table-body v-bind="scope">
                     <template slot="expand" slot-scope="{ item }">
                         <n-codemirror
-                            :options="{ readOnly: true, mime: 'application/json', lineWrapping: true, lineNumbers: true }"
+                            :options="{
+                                readOnly: true,
+                                mime: 'application/json',
+                                lineWrapping: true,
+                                lineNumbers: true,
+                                line: true,
+                            }"
                             :modes="['javascript']"
                             :value="JSON.stringify(item, null, 2)"
                         />
