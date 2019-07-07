@@ -1,10 +1,10 @@
 <template>
     <n-div flex gap="small">
         <div v-for="placement in placements" :key="placement">
-            <n-popup :placement="placement" open-on-hover>
+            <n-popup small :placement="placement" open-on-hover :config-callback="configCallback">
                 <n-button slot="trigger" outlined>{{ placement }}</n-button>
 
-                <n-img src="https://bit.ly/2YM4AEL"/>
+                <n-img src="https://bit.ly/2YM4AEL" :lazy-load="false"/>
             </n-popup>
         </div>
     </n-div>
@@ -30,6 +30,15 @@ export default {
                 'left-end',
             ],
         };
+    },
+
+    methods: {
+        configCallback (config) {
+            config.modifiers.flip = { enabled: false };
+            config.modifiers.preventOverflow = { enabled: false };
+
+            return config;
+        },
     },
 };
 </script>

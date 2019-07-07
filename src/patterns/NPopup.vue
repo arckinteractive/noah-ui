@@ -5,6 +5,8 @@
             @click.native.stop="handleClick"
             @mouseenter.native="handleMouseenter"
             @mouseleave.native="handleMouseleave"
+            @touchstart.native="handleMouseenter"
+            @touchend.native="handleMouseleave"
             ref="trigger"
         >
             <!-- Can be used instead of passing the trigger ref as a prop -->
@@ -73,13 +75,8 @@ export default {
                                     enabled: false,
                                 },
                             },
-                            flip: {
-                                behavior: ['left', 'bottom', 'top'],
-                            },
-                            preventOverflow: {
-                                boundariesElement: 'body',
-                            },
                         },
+                        eventsEnabled: false,
                     },
                 },
             },
@@ -108,14 +105,21 @@ export default {
          * DOM element to attach this popup to
          */
         trigger: {
-            type: Object,
+            type: null,
+            validator (value) {
+                return value instanceof Element;
+            },
         },
         /**
          * Dropdown placement, e.g. 'top', 'top-end' etc.
-         * See popper.js documentation.
+         * See popper.js documentation for a list of possible placements.
+         *
+         * Given erradic flip behavior of the popper, this can be passed as an object
+         * of placements corresponding to viewport `{ sm: 'top-start', md: 'top' }`
+         * Passing placement as an object will disable flip and preventOverflow
          */
         placement: {
-            type: String,
+            type: [String, Object],
             default: 'auto',
         },
         /**
@@ -151,6 +155,12 @@ export default {
         message: {
             type: String,
         },
+        /**
+         * A function that can be used to filter the popper config for this instance
+         */
+        configCallback: {
+            type: Function,
+        },
     },
 
     mounted () {
@@ -174,6 +184,31 @@ export default {
                 visible: this.isVisible,
             };
         },
+
+        popperConfig () {
+            const config = Object.assign({}, this.config.popper);
+
+            if (typeof this.placement === 'object') {
+                config.placement = this.resolveForViewport(this.placement);
+                config.modifiers.flip = { enabled: false };
+                config.modifiers.preventOverflow = { enabled: false };
+            } else {
+                config.placement = this.placement;
+            }
+
+            if (this.arrow) {
+                config.modifiers.arrow = {
+                    enabled: true,
+                    element: this.$refs.arrow,
+                };
+            }
+
+            if (typeof this.configCallback === 'function') {
+                return this.configCallback(config);
+            }
+
+            return config;
+        },
     },
 
     methods: {
@@ -183,28 +218,17 @@ export default {
             this.$nextTick(() => {
                 this.$popper.load().then((Popper) => {
                     if (!this.popper) {
-                        const config = this.config.popper;
-
-                        if (this.arrow) {
-                            config.modifiers.arrow = {
-                                enabled: true,
-                                element: this.$refs.arrow,
-                            };
-                        }
-
-                        this.popper = new Popper(this.triggerEl, this.$refs.popup.$el, {
-                            placement: this.placement,
-                            ...config,
-                        });
+                        this.popper = new Popper(this.triggerEl, this.$refs.popup.$el, this.popperConfig);
                     }
 
                     this.popper.scheduleUpdate();
 
-                    this.$emit('open');
-
                     setTimeout(() => {
-                        this.$focus(null, this.$refs.popup.$el);
-                    }, 200);
+                        this.$emit('open');
+
+                        this.triggerEl.focus();
+                        this.$focus(this.triggerEl, this.$refs.popup.$el);
+                    }, 250);
                 });
             });
         },

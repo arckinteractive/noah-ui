@@ -1,7 +1,7 @@
 <template>
     <n-div flex>
         <n-popup
-            placement="bottom-end"
+            :placement="{ sm: 'bottom-end' }"
             v-model="visible"
         >
             <template slot="trigger">

@@ -1,5 +1,5 @@
 <template>
-    <n-popup placement="right-start">
+    <n-popup :placement="{ sm: 'right-start' }">
         <n-button
             slot="trigger"
             primary

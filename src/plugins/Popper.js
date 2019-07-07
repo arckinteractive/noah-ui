@@ -2,7 +2,7 @@ export default {
     install (Vue) {
         Vue.prototype.$popper = {
             async load () {
-                const Popper = import('popper.js/dist/umd/popper.js');
+                const Popper = await import('popper.js');
 
                 return Popper.default;
             },

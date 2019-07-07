@@ -5,11 +5,19 @@
             ref="trigger"
             @mouseenter="show"
             @mouseleave="hide"
+            @touchstart="show"
+            @touchend="hide"
         >Hover
         </n-button>
 
-        <n-popup v-model="visible" :trigger="trigger" large placement="top">
-            <n-img src="https://bit.ly/2W5enZK"/>
+        <n-popup
+            v-model="visible"
+            :trigger="trigger"
+            :configCallback="configCallback"
+            :placement="{ sm: 'bottom-end', lg: 'bottom' }"
+            small
+        >
+            <n-img src="https://bit.ly/2W5enZK" :lazy-load="false"/>
         </n-popup>
     </div>
 </template>
@@ -34,6 +42,18 @@ export default {
 
         hide () {
             this.visible = false;
+        },
+
+        configCallback (config) {
+            config.modifiers.flip = {
+                enabled: false,
+            };
+
+            config.modifiers.preventOverflow = {
+                enabled: false,
+            };
+
+            return config;
         },
     },
 };
