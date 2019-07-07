@@ -21,9 +21,16 @@ yarn install
 yarn run dev
 ```
 
-### Compiles the docs, builds minified lib for production
+### Compiles the docs
+
+Build docs for deployment to gh-pages
 ```
 yarn run build
+```
+
+Build docs for local testing
+```
+yarn run build:local
 ```
 
 ### Lints and fixes files

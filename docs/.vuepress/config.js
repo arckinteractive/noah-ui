@@ -12,9 +12,10 @@ module.exports = {
         ],
     ],
 
-    //If you are running into difficulties debugging code, uncomment this
     chainWebpack: (config, isServer) => {
-        config.devtool('#eval-source-map');
+        if (process.env.BUILD_DEBUG) {
+            config.devtool('#eval-source-map');
+        }
 
         return config;
     },
