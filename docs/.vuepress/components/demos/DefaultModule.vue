@@ -6,22 +6,20 @@
         type="card"
     >
         <template slot="actions">
-            <ClientOnly>
-                <n-popup
-                    placement="bottom-start"
-                    size="xsmall"
-                >
-                    <n-button
-                        circle
-                        ghost
-                        icon="fas fa-ellipsis-v"
-                        slot="trigger"
-                        aria-label="Show Menu"
-                    ></n-button>
+            <n-popup
+                placement="bottom-start"
+                size="xsmall"
+            >
+                <n-button
+                    circle
+                    ghost
+                    icon="fas fa-ellipsis-v"
+                    slot="trigger"
+                    aria-label="Show Menu"
+                ></n-button>
 
-                    <n-menu :items="actions"></n-menu>
-                </n-popup>
-            </ClientOnly>
+                <n-menu :items="actions"></n-menu>
+            </n-popup>
         </template>
 
         <n-div padding="medium">

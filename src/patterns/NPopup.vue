@@ -47,9 +47,6 @@ import ClickOutside from 'vue-click-outside';
 
 /**
  * Popups are hidden elements that can be displayed conditionally as in a floating layer
- *
- * Note that Popups can only be rendered client-side. You will need to wrap <n-popup> with a <ClientOnly> or other no-ssr
- * wrapper provided by your SSR framework.
  */
 export default {
     mixins: [Styling],

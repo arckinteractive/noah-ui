@@ -17,9 +17,11 @@
         <n-div col sm:12>
             <label>Current Value</label>
 
-            <ClientOnly>
-                <codemirror :options="cmOptions" :value="JSON.stringify(files, null, 4)"></codemirror>
-            </ClientOnly>
+            <n-codemirror
+                :options="cmOptions"
+                :modes="['javascript']"
+                :value="JSON.stringify(files, null, 4)"
+            ></n-codemirror>
         </n-div>
     </n-div>
 </template>
@@ -35,7 +37,7 @@ export default {
                 mode: 'application/json',
                 theme: 'noah',
                 lineNumbers: true,
-                lineWrapping: true,
+                lineWrapping: false,
                 line: true,
                 readOnly: true,
             },

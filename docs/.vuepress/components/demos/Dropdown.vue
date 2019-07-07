@@ -1,22 +1,20 @@
 <template>
     <n-div flex>
-        <ClientOnly>
-            <n-popup
-                placement="bottom-end"
-                v-model="visible"
-            >
-                <template slot="trigger">
-                    <n-button
-                        suffix-icon="fas fa-caret-down fa-xs"
-                        text="Show Dropdown"
-                        @click="visible != visible"
-                    >
-                    </n-button>
-                </template>
+        <n-popup
+            placement="bottom-end"
+            v-model="visible"
+        >
+            <template slot="trigger">
+                <n-button
+                    suffix-icon="fas fa-caret-down fa-xs"
+                    text="Show Dropdown"
+                    @click="visible != visible"
+                >
+                </n-button>
+            </template>
 
-                <LoremCard/>
-            </n-popup>
-        </ClientOnly>
+            <LoremCard/>
+        </n-popup>
     </n-div>
 </template>
 

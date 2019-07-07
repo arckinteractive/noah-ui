@@ -9,22 +9,20 @@
         </n-control>
 
         <n-control col md:4 sm:12>
-            <ClientOnly>
-                <n-popup placement="bottom-end" size="auto" slot="prefixIcon">
-                    <div slot="trigger">
-                        <n-icon icon="fab fa-facebook-f"></n-icon>
-                        <n-icon icon="fas fa-chevron-down fa-xs"></n-icon>
-                    </div>
+            <n-popup placement="bottom-end" size="auto" slot="prefixIcon">
+                <div slot="trigger">
+                    <n-icon icon="fab fa-facebook-f"></n-icon>
+                    <n-icon icon="fas fa-chevron-down fa-xs"></n-icon>
+                </div>
 
-                    <n-div padding="medium">
-                        <n-div flex>
-                            <n-icon icon="fab fa-facebook-f"></n-icon>
-                            <n-icon icon="fab fa-twitter"></n-icon>
-                            <n-icon icon="fab fa-instagram"></n-icon>
-                        </n-div>
+                <n-div padding="medium">
+                    <n-div flex>
+                        <n-icon icon="fab fa-facebook-f"></n-icon>
+                        <n-icon icon="fab fa-twitter"></n-icon>
+                        <n-icon icon="fab fa-instagram"></n-icon>
                     </n-div>
-                </n-popup>
-            </ClientOnly>
+                </n-div>
+            </n-popup>
 
             <input placeholder="Icon Slot" type="text"/>
         </n-control>

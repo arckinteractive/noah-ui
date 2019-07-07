@@ -8,11 +8,9 @@
         >Hover
         </n-button>
 
-        <ClientOnly>
-            <n-popup v-model="visible" :trigger="trigger" large placement="top">
-                <n-img src="https://bit.ly/2W5enZK"/>
-            </n-popup>
-        </ClientOnly>
+        <n-popup v-model="visible" :trigger="trigger" large placement="top">
+            <n-img src="https://bit.ly/2W5enZK"/>
+        </n-popup>
     </div>
 </template>
 

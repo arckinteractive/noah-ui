@@ -1,6 +1,6 @@
 module.exports = {
     title: 'Noah UI',
-    description: 'Vue Framework for Apocalyptic Schedules',
+    description: 'Vue.js Framework for Web Artisans',
     base: process.env.BUILD_BASE || '/',
     plugins: [
         [
@@ -21,12 +21,4 @@ module.exports = {
             },
         ],
     ],
-
-    chainWebpack: (config, isServer) => {
-        if (process.env.BUILD_DEBUG) {
-            config.devtool('#eval-source-map');
-        }
-
-        return config;
-    },
 };

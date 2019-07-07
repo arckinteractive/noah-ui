@@ -16,28 +16,26 @@
             />
         </n-div>
 
-        <ClientOnly>
-            <n-popup
-                v-model="visible"
-                :trigger="trigger"
-                @click.stop
-                @mouseleave="unfocus"
-                placement="bottom-start"
-                :open-on-click="false"
-                class="suggestions"
-                small
-            >
-                <n-menu
-                    v-if="suggestions && suggestions.length"
-                    :accordion="false"
-                    :items="suggestions"
-                ></n-menu>
+        <n-popup
+            v-model="visible"
+            :trigger="trigger"
+            @click.stop
+            @mouseleave="unfocus"
+            placement="bottom-start"
+            :open-on-click="false"
+            class="suggestions"
+            small
+        >
+            <n-menu
+                v-if="suggestions && suggestions.length"
+                :accordion="false"
+                :items="suggestions"
+            ></n-menu>
 
-                <n-div v-else padding="small">
-                    There are not items matching your search
-                </n-div>
-            </n-popup>
-        </ClientOnly>
+            <n-div v-else padding="small">
+                There are not items matching your search
+            </n-div>
+        </n-popup>
     </div>
 </template>
 
