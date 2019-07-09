@@ -59,50 +59,50 @@ export default {
                 return {
                     attr: [e],
                     classPrefix: 'color-',
-                    responsive: false,
+
                 };
             }),
             ...Object.values(sizes).map((e) => {
                 return {
                     attr: [e],
                     classPrefix: 'size-',
-                    responsive: false,
+
                 };
             }),
             {
                 attr: ['color'],
                 classPrefix: 'color-',
-                responsive: false,
+
             },
             {
                 attr: ['size'],
                 classPrefix: 'size-',
-                responsive: false,
+
             },
             {
                 attr: ['text', 'text-color', 'text-size'],
                 classPrefix: 'text-',
-                responsive: false,
+
             },
             {
                 attr: ['bg', 'bg-color'],
                 classPrefix: 'bg-',
-                responsive: false,
+
             },
             {
                 attr: ['circle'],
                 classPrefix: 'radius-',
-                responsive: false,
+
             },
             {
                 attr: ['outlined'],
                 class: 'outlined',
-                responsive: false,
+
             },
             {
                 attr: ['ghost'],
                 class: 'ghost',
-                responsive: false,
+
             },
             {
                 attr: ['text-align', 'align'],
@@ -182,12 +182,12 @@ export default {
             {
                 attr: ['container'],
                 class: 'n-container',
-                responsive: false,
+
             },
             {
                 attr: ['flex'],
                 class: 'n-flex',
-                responsive: false,
+
             },
             {
                 attr: [
@@ -223,7 +223,7 @@ export default {
             {
                 attr: ['col'],
                 class: 'n-col',
-                responsive: false,
+
             },
             {
                 attr: [
@@ -240,6 +240,15 @@ export default {
                 classPrefix: 'col-',
                 responsive: true,
             },
+            {
+                attr: ['spinner'],
+                class: 'n-spinner',
+            },
         ],
+    },
+    directives: {
+        spinner: {
+            baseClass: 'n-spinner-overlay',
+        },
     },
 };
