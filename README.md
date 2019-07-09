@@ -43,7 +43,7 @@ yarn run lint
 yarn run test:unit
 ```
 
-## [Installation]
+## Detailed Installation
 
 ```
 yarn add @arckinteractive/noah-ui
