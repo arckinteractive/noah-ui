@@ -41,17 +41,7 @@ yarn run lint
 ### Run your unit tests
 ```
 yarn run test:unit
-
----
-title: Getting Started with Noah UI
-meta: 
-    - name: description
-    - content: Vue Framework for Web Artisans
-label: Getting Started
-priority: 2
-icon: fas fa-box-open
----
-
+```
 
 ## Install
 
