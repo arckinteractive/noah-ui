@@ -8,7 +8,7 @@ NoahUi was conceptualized and brought to life by [Ismayil Khayredinov](https://g
 
 We welcome contributions. Tests are incomplete and there are still some components that need work. We have started building out the framework with a number of big ideas and we weren't entirely sure, what would be possible, hence the framework underwent many iterations - tests would have kept us back, so we have incurred this technical debt consciously and will work on rolling in the tests as time allows. This started off as a passion project and we've been working on it in our free time. Given the extracurricular nature of it, please be gentle with criticism: constructive criticism is good, bashing is not acceptable.
  
-## [Documentation & Demo](https://arckinteractive.github.io/noah-ui/)
+## [Initial Configuration](https://arckinteractive.github.io/noah-ui/)
 
 
 ## Project setup
@@ -43,7 +43,7 @@ yarn run lint
 yarn run test:unit
 ```
 
-## Install
+## Installation
 
 ```
 yarn add @arckinteractive/noah-ui
