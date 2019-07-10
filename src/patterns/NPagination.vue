@@ -4,7 +4,7 @@
         v-if="total > pageSize"
         role="navigation"
         flex
-        gap="small"
+        gap="xsmall"
         center-center
     >
         <n-button

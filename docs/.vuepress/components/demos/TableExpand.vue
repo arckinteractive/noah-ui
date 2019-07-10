@@ -7,31 +7,10 @@
             :expand="true"
             @sort="changeSort"
         >
-            <template slot="default" slot-scope="scope">
-                <n-table-body v-bind="scope">
-                    <template slot="expand" slot-scope="{ item }">
-                        <n-codemirror
-                            :options="{
-                                readOnly: true,
-                                mime: 'application/json',
-                                lineWrapping: true,
-                                lineNumbers: true,
-                                line: true,
-                            }"
-                            :modes="['javascript']"
-                            :value="JSON.stringify(item, null, 2)"
-                        />
-                    </template>
-
-                    <template slot="flag" slot-scope="{ item }">
-                        <n-media :ratio="2" width="80px">
-                            <n-img
-                                :src="require(`svg-country-flags/svg/${item.alpha2Code.toLowerCase()}.svg`)"
-                                :alt="item.name"
-                            />
-                        </n-media>
-                    </template>
-                </n-table-body>
+            <template v-slot:expand="{ item }">
+                <n-img
+                    :src="require(`svg-country-flags/svg/${item.alpha2Code.toLowerCase()}.svg`)"
+                />
             </template>
         </n-table>
     </n-module>
@@ -66,12 +45,6 @@ export default {
                     label: 'Code',
                     prop: 'alpha2Code',
                     sortable: true,
-                    width: '10%',
-                    centered: true,
-                },
-                {
-                    label: 'Flag',
-                    prop: 'flag',
                     width: '10%',
                     centered: true,
                 },

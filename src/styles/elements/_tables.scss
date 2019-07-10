@@ -40,7 +40,8 @@
   .n-table__th {
     vertical-align: middle;
     border-bottom: var(--color-grey-border);
-    color: var(--color-grey-text);
+    color: var(--color-grey-fade-invert);
+    background: var(--color-grey-fade);
     text-transform: uppercase;
     font-weight: var(--weight-bold);
 
