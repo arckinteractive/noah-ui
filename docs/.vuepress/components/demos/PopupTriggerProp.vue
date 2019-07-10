@@ -17,7 +17,9 @@
             :placement="{ sm: 'bottom-end', lg: 'bottom' }"
             small
         >
-            <n-img src="https://bit.ly/2W5enZK" :lazy-load="false"/>
+            <n-div padding="small">
+                <n-img src="https://bit.ly/2W5enZK" :lazy-load="false"/>
+            </n-div>
         </n-popup>
     </div>
 </template>
