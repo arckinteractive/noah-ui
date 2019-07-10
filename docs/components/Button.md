@@ -1,5 +1,7 @@
 ---
 label: Button
+badge: Atom
+badgeColor: primary
 ---
 
 ## Buttons

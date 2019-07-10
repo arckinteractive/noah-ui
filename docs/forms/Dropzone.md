@@ -1,6 +1,8 @@
 ---
 label: Dropzone
 priority: 15
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Dropzone

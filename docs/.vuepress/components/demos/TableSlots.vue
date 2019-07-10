@@ -8,40 +8,37 @@
             :defaultSort="sort"
             @sort="changeSort"
         >
-            <template slot="default" slot-scope="scope">
-                <n-table-body v-bind="scope">
-                    <template slot="checkbox" slot-scope="{ item }">
-                        <n-checkbox
-                            v-model="model.countries"
-                            :option="item.alpha2Code"
+            <template slot="checkbox" slot-scope="{ item }">
+                <n-checkbox
+                    v-model="model.countries"
+                    :option="item.alpha2Code"
+                />
+            </template>
+
+            <template slot="alpha2Code" slot-scope="{ item }">
+                <a
+                    :href="`https://en.wikipedia.org/wiki/ISO_3166-2:${item.alpha2Code}`"
+                    target="_blank"
+                >{{ item.alpha2Code }}
+                </a>
+            </template>
+
+            <template slot="name" slot-scope="{ item }">
+                <n-tile
+                    :title="item.name"
+                    :subtitle="item.nativeName"
+                >
+                    <n-media avatar slot="icon">
+                        <n-img
+                            :src="require(`svg-country-flags/svg/${item.alpha2Code.toLowerCase()}.svg`)"
+                            :alt="item.name"
                         />
-                    </template>
+                    </n-media>
+                </n-tile>
+            </template>
 
-                    <template slot="alpha2Code" slot-scope="{ item }">
-                        <a
-                            :href="`https://en.wikipedia.org/wiki/ISO_3166-2:${item.alpha2Code}`"
-                            target="_blank"
-                        >{{ item.alpha2Code }}
-                        </a>
-                    </template>
-
-                    <template slot="name" slot-scope="{ item }">
-                        <n-tile
-                            :title="item.name"
-                            :subtitle="item.nativeName"
-                        >
-                            <n-media avatar slot="icon">
-                                <n-img
-                                    :src="require(`svg-country-flags/svg/${item.alpha2Code.toLowerCase()}.svg`)"
-                                />
-                            </n-media>
-                        </n-tile>
-                    </template>
-
-                    <template slot="coordinates" slot-scope="{ item }">
-                        <strong v-html="convertDMS(item.latlng[0], item.latlng[1])"></strong>
-                    </template>
-                </n-table-body>
+            <template slot="coordinates" slot-scope="{ item }">
+                <strong v-html="convertDMS(item.latlng[0], item.latlng[1])"></strong>
             </template>
         </n-table>
     </n-module>

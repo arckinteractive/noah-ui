@@ -5,11 +5,10 @@ import filemap from './filemap';
 
 const generateComponentSpec = () => {
     const componentInfo = filemap.getComponentInfo([
-        'elements',
-        'forms',
-        'patterns',
+        'atoms',
+        'molecules',
+        'organisms',
         'plugins',
-        'apps',
     ]);
 
     filemap.writeSpecFile({
@@ -17,11 +16,20 @@ const generateComponentSpec = () => {
         componentInfo,
     });
 
+    filemap.writeIdeSpecFile({
+        outputFilePath: path.resolve(__dirname, '../../src/noah.ide.js'),
+        componentInfo,
+    });
+
     return componentInfo;
 };
 
 const generateExtensionSpec = () => {
-    return filemap.getComponentInfo(['extensions']);
+    return filemap.getComponentInfo([
+        'extensions',
+        'templates',
+        'pages',
+    ]);
 };
 
 const components = Object.assign({}, generateComponentSpec(), generateExtensionSpec());

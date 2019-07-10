@@ -1,19 +1,17 @@
 <template>
     <n-table :headers="headers" :items="components" my="large">
-        <n-table-body :headers="headers" :items="components">
-            <template slot="name" slot-scope="{ item }">
-                <strong>{{ item.name }}</strong>
-            </template>
+        <template slot="name" slot-scope="{ item }">
+            <strong>{{ item.name }}</strong>
+        </template>
 
-            <template slot="path" slot-scope="{ item }">
-                <span class="cm-atom">{{ item.path }}</span>
-            </template>
+        <template slot="path" slot-scope="{ item }">
+            <span class="cm-atom">{{ item.path }}</span>
+        </template>
 
-            <template slot="async" slot-scope="{ item }">
-                <n-icon v-if="item.async" icon="fas fa-check" text-color="success"></n-icon>
-                <n-icon v-else icon="fas fa-times" text-color="danger"></n-icon>
-            </template>
-        </n-table-body>
+        <template slot="async" slot-scope="{ item }">
+            <n-icon v-if="item.async" icon="fas fa-check" text-color="success"></n-icon>
+            <n-icon v-else icon="fas fa-times" text-color="danger"></n-icon>
+        </template>
     </n-table>
 </template>
 
@@ -21,10 +19,10 @@
 import docs from '../docs.json';
 
 export default {
-    data() {
+    data () {
         return {
             docs,
-        }
+        };
     },
 
     computed: {
@@ -54,7 +52,7 @@ export default {
                 {
                     prop: 'path',
                     label: 'Path',
-                    width: '10%',
+                    width: '15%',
                 },
                 {
                     prop: 'async',

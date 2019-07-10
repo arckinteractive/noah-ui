@@ -1,5 +1,7 @@
 ---
 label: Menu
+badge: Organism
+badgeColor: danger
 ---
 
 ## Menus and Menu Items

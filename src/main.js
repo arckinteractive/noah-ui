@@ -7,6 +7,8 @@ import Alert from './plugins/Alert';
 import Focus from './plugins/Focus';
 import Popper from './plugins/Popper';
 
+import Spinner from './directives/VSpinner';
+
 export default {
     install (Vue, options) {
         const config = options || noahConfig;
@@ -23,6 +25,8 @@ export default {
         Vue.use(Alert, config);
         Vue.use(Focus, config);
         Vue.use(Popper, config);
+
+        Vue.directive('spinner', Spinner(config));
 
         Object.keys(config.components).forEach(async (componentName) => {
             const opts = config.components[componentName];

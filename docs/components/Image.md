@@ -1,5 +1,7 @@
 ---
 label: Image
+badge: Atom
+badgeColor: primary
 ---
 
 ## Images

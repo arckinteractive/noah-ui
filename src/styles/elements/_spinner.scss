@@ -7,3 +7,28 @@
     }
   }
 }
+
+.n-spinner-overlay {
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    background: var(--spinner-overly, rgba(255, 255, 255, 0.6));
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  &:after {
+    @include spinner($size: var(--size-l), $stroke: 3px, $color: var(--color-primary));
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: calc(-1 * var(--size-l) / 2);
+    z-index: 3;
+  }
+}

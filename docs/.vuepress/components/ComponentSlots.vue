@@ -1,35 +1,32 @@
 <template>
     <n-table :headers="headers" :items="data">
-        <n-table-body :headers="headers" :items="data">
-            <template slot="noResults">
-                <span class="n-help">This component does not render any parent slots</span>
-            </template>
+        <template slot="noResults">
+            <span class="n-help">This component does not render any parent slots</span>
+        </template>
 
-            <template slot="name" slot-scope="{ item }">
-                <span class="cm-attribute">{{ normalize(item.name) }}</span>
-            </template>
+        <template slot="name" slot-scope="{ item }">
+            <span class="cm-attribute">{{ normalize(item.name) }}</span>
+        </template>
 
-            <template slot="description" slot-scope="{ item }">
-                <p v-html="markdown(item.description)"></p>
+        <template slot="description" slot-scope="{ item }">
+            <p v-html="markdown(item.description)"></p>
 
-                <n-table :headers="propHeaders" :items="item.props">
-                    <div slot="headers"></div>
-                    <n-table-body :headers="propHeaders" :items="item.props">
-                        <template slot="noResults">
-                            <span class="n-help">This slot has no scoped props</span>
-                        </template>
+            <n-table :headers="propHeaders" :items="item.props">
+                <div slot="headers"></div>
 
-                        <template slot="name" slot-scope="{ item }">
-                            <span class="cm-attribute">{{ normalize(item.name) }}</span>
-                        </template>
+                <template slot="noResults">
+                    <span class="n-help">This slot has no scoped props</span>
+                </template>
 
-                        <template slot="type" slot-scope="{ item }">
-                            <span class="cm-type">{{ normalize(item.type) }}</span>
-                        </template>
-                    </n-table-body>
-                </n-table>
-            </template>
-        </n-table-body>
+                <template slot="name" slot-scope="{ item }">
+                    <span class="cm-attribute">{{ normalize(item.name) }}</span>
+                </template>
+
+                <template slot="type" slot-scope="{ item }">
+                    <span class="cm-type">{{ normalize(item.type) }}</span>
+                </template>
+            </n-table>
+        </template>
     </n-table>
 </template>
 

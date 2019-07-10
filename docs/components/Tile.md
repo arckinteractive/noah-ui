@@ -1,5 +1,7 @@
 ---
 label: Tile
+badge: Atom
+badgeColor: primary
 ---
 
 ## Tiles

@@ -1,5 +1,5 @@
 import sandbox from '../sandbox';
-import NBadge from '@/elements/NBadge';
+import NBadge from '@/atoms/NBadge';
 
 describe('NBadge component', () => {
     it('should mount component with props', () => {

@@ -1,6 +1,8 @@
 ---
 label: Checkbox
 priority: 11
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Checkboxes

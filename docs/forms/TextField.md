@@ -1,6 +1,8 @@
 ---
 label: Text Field
 priority: 10
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Text Field

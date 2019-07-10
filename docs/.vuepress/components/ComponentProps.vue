@@ -1,30 +1,28 @@
 <template>
     <n-table :headers="headers" :items="data">
-        <n-table-body :headers="headers" :items="data">
-            <template slot="noResults">
-                <span class="n-help">This component has no defined public props</span>
-            </template>
+        <template slot="noResults">
+            <span class="n-help">This component has no defined public props</span>
+        </template>
 
-            <template slot="name" slot-scope="{ item }">
+        <template slot="name" slot-scope="{ item }">
                 <span
                     :class="{ required: item.required }"
                     :title="item.required ? 'Required' : null"
                     class="cm-attribute component-meta__item"
                 >{{ normalize(item.name) }}</span>
-            </template>
+        </template>
 
-            <template slot="type" slot-scope="{ item }">
-                <span class="cm-type">{{ normalize(item.type) }}</span>
-            </template>
+        <template slot="type" slot-scope="{ item }">
+            <span class="cm-type">{{ normalize(item.type) }}</span>
+        </template>
 
-            <template slot="default" slot-scope="{ item }">
-                <span class="cm-atom">{{ normalize(item.default) }}</span>
-            </template>
+        <template slot="defaultValue" slot-scope="{ item }">
+            <span class="cm-atom">{{ normalize(item.default) }}</span>
+        </template>
 
-            <template slot="description" slot-scope="{ item }">
-                <span v-html="markdown(item.description)"></span>
-            </template>
-        </n-table-body>
+        <template slot="description" slot-scope="{ item }">
+            <span v-html="markdown(item.description)"></span>
+        </template>
     </n-table>
 </template>
 
@@ -53,7 +51,7 @@ export default {
                     width: '15%',
                 },
                 {
-                    prop: 'default',
+                    prop: 'defaultValue',
                     label: 'Default',
                     width: '15%',
                 },

@@ -1,14 +1,12 @@
 ---
 label: Table
+badge: Organism
+badgeColor: danger
 ---
 
 ## Tables
 
 <ComponentMeta name="NTable" />
-
-<ComponentMeta name="NTableHead" />
-
-<ComponentMeta name="NTableBody" />
 
 
 ### Headers

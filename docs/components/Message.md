@@ -1,5 +1,7 @@
 ---
 label: Message
+badge: Atom
+badgeColor: primary
 ---
 
 ## Message

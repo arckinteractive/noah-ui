@@ -1,5 +1,7 @@
 ---
 label: Highlight
+badge: Atom
+badgeColor: primary
 ---
 
 ## Highlight

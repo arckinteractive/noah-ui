@@ -40,6 +40,7 @@
 
 .expand-enter-active,
 .expand-leave-active {
+  transform-origin: top center;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 

@@ -1,5 +1,7 @@
 ---
 label: Module
+badge: Organism
+badgeColor: danger
 ---
 
 ## Module

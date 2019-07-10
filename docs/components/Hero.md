@@ -1,5 +1,7 @@
 ---
 label: Hero
+badge: Organism
+badgeColor: danger
 ---
 
 ## Heroes

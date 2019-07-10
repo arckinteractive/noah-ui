@@ -30,6 +30,12 @@ export default {
                     to: { path: e.path },
                     expanded: false,
                     selected: this.$route.path === e.path,
+                    badge: config.badge ? {
+                        title: config.badge,
+                        value: config.badge.substr(0, 1),
+                        color: config.badgeColor || 'neutral',
+                        circle: true,
+                    } : null,
                     parentId,
                     id,
                 };

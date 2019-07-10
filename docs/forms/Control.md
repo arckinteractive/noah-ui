@@ -1,6 +1,8 @@
 ---
 label: Control
 priority: 3
+badge: Atom
+badgeColor: primary
 ---
 
 ## Control

@@ -1,5 +1,7 @@
 ---
 label: Embed
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Embed
