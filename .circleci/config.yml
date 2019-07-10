@@ -7,10 +7,14 @@ workflows:
         filters:
           tags:
             ignore: /.*/
+          branches:
+            ignore: /gh-pages/
     - unit_tests:
         filters:
           tags:
             ignore: /.*/
+          branches:
+            ignore: /gh-pages/
     - deploy_staging:
         filters:
           branches:
