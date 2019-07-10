@@ -1,6 +1,6 @@
 import sandbox from '../sandbox';
-import NButton from '@/elements/NButton';
-import NIcon from '@/elements/NIcon';
+import NButton from '@/atoms/NButton';
+import NIcon from '@/atoms/NIcon';
 
 describe('NButton component', () => {
     it('should mount component with props', () => {
