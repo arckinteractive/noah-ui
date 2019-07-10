@@ -10,7 +10,7 @@
         @reload="reload"
     >
         <template v-slot:search>
-            <n-form @submit="search = searchModel">
+            <n-form @submit="doSearch">
                 <n-div flex padding="small" gap="small" right-center>
                     <n-text-field
                         v-model="searchModel.name"
@@ -202,6 +202,10 @@ export default {
                 this.loading = false;
             });
         },
+
+        doSearch() {
+            this.search = Object.assign({}, this.searchModel);
+        }
     },
 };
 </script>
