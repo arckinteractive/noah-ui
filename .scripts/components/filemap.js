@@ -57,6 +57,8 @@ const writeIdeSpecFile = ({ componentInfo, outputFilePath }) => {
         }
     });
 
+    lines.push('');
+    
     const buffer = Buffer.from(lines.join('\n'));
 
     fs.writeFileSync(outputFilePath, buffer);
