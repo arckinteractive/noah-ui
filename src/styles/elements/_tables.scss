@@ -1,23 +1,5 @@
 @import "../global";
 
-.n-data-table {
-  display: flex;
-  flex-wrap: wrap;
-
-  & > * {
-    flex: 1 0 100%;
-  }
-
-  & > .n-pagination {
-    margin: var(--space-m) auto;
-    text-align: center;
-  }
-
-  table {
-    margin: 0 auto;
-  }
-}
-
 .n-table__wrapper {
   width: 100%;
   max-width: 100%;
