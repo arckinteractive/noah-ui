@@ -95,11 +95,13 @@ export default {
             items.push({
                 icon: this.config.icons.prev,
                 pageIndex: currentPage - 1,
+                type: 'arrow',
             });
 
             if (startPage > 1) {
                 items.push({
                     pageIndex: 1,
+                    type: 'page',
                 });
             }
 
@@ -107,10 +109,12 @@ export default {
                 items.push({
                     icon: this.config.icons.more,
                     pageIndex: -1,
+                    type: 'more',
                 });
             } else if (startPage === 3) {
                 items.push({
                     pageIndex: 2,
+                    type: 'page',
                 });
             }
 
@@ -122,6 +126,7 @@ export default {
                 }
                 items.push({
                     pageIndex: page,
+                    type: 'page',
                 });
                 pager++;
             }
@@ -130,22 +135,26 @@ export default {
                 items.push({
                     icon: this.config.icons.more,
                     pageIndex: -1,
+                    type: 'more',
                 });
             } else if (totalPages - 3 === totalPages) {
                 items.push({
                     pageIndex: totalPages - 1,
+                    type: 'page',
                 });
             }
 
             if (totalPages - 3 >= startPage) {
                 items.push({
                     pageIndex: totalPages,
+                    type: 'page',
                 });
             }
 
             items.push({
                 icon: this.config.icons.next,
                 pageIndex: currentPage + 1,
+                type: 'arrow',
             });
 
             return items.map((item) => {
@@ -169,6 +178,12 @@ export default {
                 };
 
                 return item;
+            }).filter((e) => {
+                if (this.$viewport.isMobileDown) {
+                    return e.type === 'arrow';
+                }
+
+                return true;
             });
         },
     },
