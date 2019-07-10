@@ -1,6 +1,8 @@
 ---
 label: Radio
 priority: 12
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Radios

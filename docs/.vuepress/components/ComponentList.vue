@@ -52,7 +52,7 @@ export default {
                 {
                     prop: 'path',
                     label: 'Path',
-                    width: '10%',
+                    width: '15%',
                 },
                 {
                     prop: 'async',

@@ -1,5 +1,7 @@
 ---
 label: Drawer
+badge: Organism
+badgeColor: danger
 ---
 
 ## Drawer

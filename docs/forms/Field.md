@@ -1,6 +1,8 @@
 ---
 label: Field
 priority: 4
+badge: Atom
+badgeColor: primary
 ---
 
 ## Form Field

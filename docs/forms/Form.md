@@ -1,6 +1,8 @@
 ---
 label: Form
 priority: 2
+badge: Atom
+badgeColor: primary
 ---
 
 ## Form

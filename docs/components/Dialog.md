@@ -1,5 +1,7 @@
 ---
 label: Dialog
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Dialog

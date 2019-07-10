@@ -1,5 +1,7 @@
 ---
 label: Table
+badge: Organism
+badgeColor: danger
 ---
 
 ## Tables

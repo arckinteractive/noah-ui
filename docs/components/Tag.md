@@ -1,5 +1,7 @@
 ---
 label: Tag
+badge: Atom
+badgeColor: primary
 ---
 
 ## Tags

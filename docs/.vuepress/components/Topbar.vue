@@ -64,7 +64,7 @@
 <script>
 import SearchBox from './SearchBox';
 import NButton from '../../../src/atoms/NButton';
-import NDrawer from '../../../src/molecules/NDrawer';
+import NDrawer from '../../../src/organisms/NDrawer';
 
 export default {
     components: {

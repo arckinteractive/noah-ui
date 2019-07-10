@@ -1,5 +1,7 @@
 ---
 label: Media
+badge: Atom
+badgeColor: primary
 ---
 
 ## Media

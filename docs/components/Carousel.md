@@ -1,5 +1,7 @@
 ---
 label: Carousel
+badge: Organism
+badgeColor: danger
 ---
 
 ## Carousel

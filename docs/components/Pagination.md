@@ -1,5 +1,7 @@
 ---
 label: Pagination
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Pagination

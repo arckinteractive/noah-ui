@@ -1,5 +1,7 @@
 ---
 label: Popup
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Popup

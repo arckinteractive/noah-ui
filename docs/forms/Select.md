@@ -1,6 +1,8 @@
 ---
 label: Select
 priority: 13
+badge: Molecule
+badgeColor: secondary
 ---
 
 ## Selects
