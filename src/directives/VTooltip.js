@@ -12,7 +12,7 @@ export default {
         data.openOnClick = false;
         data.trigger = el;
 
-        import('../patterns/NPopup').then((PopupComponent) => {
+        import('../molecules/NPopup').then((PopupComponent) => {
             const Constructor = vnode.context.Vue.extend(PopupComponent.default);
 
             const instance = new Constructor({
