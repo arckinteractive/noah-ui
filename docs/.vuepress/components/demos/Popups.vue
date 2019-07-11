@@ -1,10 +1,12 @@
 <template>
     <n-div flex gap="small">
         <div v-for="placement in placements" :key="placement">
-            <n-popup small :placement="placement" open-on-hover :config-callback="configCallback">
+            <n-popup small :placement="placement" :config-callback="configCallback">
                 <n-button slot="trigger" outlined>{{ placement }}</n-button>
 
-                <n-img src="https://bit.ly/2YM4AEL" :lazy-load="false"/>
+                <n-div padding="small">
+                    <n-img src="https://bit.ly/2YM4AEL" :lazy-load="false"/>
+                </n-div>
             </n-popup>
         </div>
     </n-div>

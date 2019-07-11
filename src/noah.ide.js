@@ -37,6 +37,7 @@ Vue.component('NCarousel', () => import('./organisms/NCarousel.vue'));
 Vue.component('NDataTable', () => import('./organisms/NDataTable.vue'));
 Vue.component('NDrawer', () => import('./organisms/NDrawer.vue'));
 Vue.component('NHero', () => import('./organisms/NHero.vue'));
+Vue.component('NInfiniteList', () => import('./organisms/NInfiniteList.vue'));
 Vue.component('NMenu', () => import('./organisms/NMenu.vue'));
 Vue.component('NModule', () => import('./organisms/NModule.vue'));
 Vue.component('NTable', () => import('./organisms/NTable.vue'));

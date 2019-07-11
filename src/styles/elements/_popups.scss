@@ -4,6 +4,10 @@
   --popup-radius: var(--radius-default);
   --popup-width: var(--popup-m);
   --popup-bg-color: var(--color-white);
+  --popup-arrow-size: 8px;
+  --popup-border-width: 1px;
+  --popup-border-color: var(--color-grey);
+  --popup-shadow: var(--box-shadow-m);
 }
 
 .n-popup {
@@ -12,10 +16,16 @@
   min-width: 160px;
   max-width: 85vw;
   width: var(--popup-width);
-  border-radius: var(--popup-radius);
-  box-shadow: var(--box-shadow-m);
   max-height: calc(100vh - 300px);
-  overflow-y: auto;
+
+  .n-popup__content {
+    padding: 2px 0;
+    border-radius: var(--popup-radius);
+    box-shadow: var(--popup-shadow);
+    border: 1px solid var(--popup-border-color);
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+  }
 
   @each $size, $name in $sizes {
     &.size-#{$name} {
@@ -28,14 +38,26 @@
   }
 
   &.tooltip {
+    --popup-bg-color: var(--color-black);
+    --popup-border-color: var(--color-black);
+    --popup-shadow: var(--box-shadow-s);
+    --popup-text-color: var(--color-white);
+
     width: auto;
-    padding: var(--space-s) var(--space-m);
-    background: var(--color-primary);
-    color: var(--color-white);
-    border-radius: calc(var(--grid-unit) * 2);
-    box-shadow: var(--box-shadow-s);
-    font-size: var(--text-s);
+    color: var(--popup-text-color);
     text-align: center;
+
+    .n-popup__content {
+      padding: var(--space-s) var(--space-m);
+    }
+
+    @each $name in $palettes {
+      &.color-#{$name} {
+        --popup-bg-color: var(--color-#{$name});
+        --popup-border-color: var(--color-#{$name}-darken);
+        --popup-text-color: var(--color-#{$name}-invert);
+      }
+    }
   }
 
   &:focus {
@@ -101,4 +123,60 @@
 .n-popup[x-placement="left-end"] {
   margin-right: var(--space-s);
   transform-origin: bottom right;
+}
+
+$popup-edges: (
+        top: 'bottom',
+        right: 'left',
+        left: 'right',
+        bottom: 'top',
+);
+
+.n-popup__arrow {
+  &, &:after {
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border: solid transparent;
+    border-width: var(--popup-arrow-size);
+  }
+}
+
+@each $edge, $inverse in $popup-edges {
+  .n-popup[x-placement^="#{$edge}"] {
+    @if $edge == 'left' or $edge == 'right' {
+      margin-top: calc(-1 * var(--popup-arrow-size));
+    }
+  }
+
+  .n-popup[x-placement^="#{$edge}"] .n-popup__arrow {
+    #{$edge}: 100%;
+    @if $edge == 'left' or $edge == 'right' {
+      margin-top: var(--popup-arrow-size);
+    }
+  }
+
+  .n-popup[x-placement^="#{$edge}"] .n-popup__arrow {
+    border-#{$edge}-color: var(--popup-border-color);
+
+    @if $edge == 'top' or $edge == 'bottom' {
+      margin-#{$edge}: calc(-1 * var(--popup-border-width));
+    } @else {
+      margin-#{$edge}: calc(-1 * var(--popup-border-width));
+    }
+  }
+
+  .n-popup[x-placement^="#{$edge}"] .n-popup__arrow:after {
+    #{$inverse}: calc(-1 * (var(--popup-arrow-size)));
+    margin-#{$inverse}: calc(var(--popup-border-width) / 2);
+    border-#{$edge}-color: var(--popup-bg-color);
+
+    @if $edge == 'top' or $edge == 'bottom' {
+      transform: translateX(-50%);
+    } @else {
+      transform: translateY(-50%);
+    }
+  }
 }

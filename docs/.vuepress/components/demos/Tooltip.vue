@@ -13,7 +13,8 @@
             icon="fas fa-exclamation"
             v-tooltip="{
                 message: 'You have an answer!',
-                placement: 'bottom',
+                placement: { sm: 'bottom-start', lg: 'bottom'},
+                attrs: { color: 'danger', 'text-size': 'large' },
             }"
         ></n-button>
     </n-div>

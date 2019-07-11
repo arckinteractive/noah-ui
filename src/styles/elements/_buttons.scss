@@ -58,7 +58,7 @@ input[type="button"],
   }
 
   &.loading {
-    color: transparent;
+    color: transparent !important;
     --loader-color: var(--button-color-invert);
 
     &:after {

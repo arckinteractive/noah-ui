@@ -164,31 +164,6 @@ export default {
                 },
             ];
         },
-
-        sortedItems () {
-            const items = this.items.slice(0);
-            const prop = this.sort.prop;
-            const order = this.sort.order;
-
-            const compareText = (a, b) => a[prop].toLowerCase().localeCompare(b[prop]);
-            const compareNumber = (a, b) => a[prop] - b[prop];
-
-            let callback;
-
-            switch (prop) {
-                case 'area' :
-                    callback = compareNumber;
-                    break;
-
-                default:
-                    callback = compareText;
-                    break;
-            }
-
-            const sorted = items.sort(callback);
-
-            return order === 'descending' ? sorted.reverse() : sorted;
-        },
     },
 
     methods: {

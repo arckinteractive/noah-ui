@@ -8,8 +8,6 @@ badgeColor: secondary
 
 <ComponentMeta name="NPopup" />
 
-Please note that arrow styles are not included, but you can add them for various placement positions: `.n-popup[x-placement^="top"] .n-popup__arrow`
-
 ### Popup Placement
 
 <ComponentDemo name="Popups" />
