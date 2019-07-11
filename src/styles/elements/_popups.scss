@@ -8,7 +8,6 @@
   --popup-border-width: 1px;
   --popup-border-color: var(--color-grey);
   --popup-shadow: var(--box-shadow-m);
-  --tooltip-gradient: linear-gradient(-180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01) 90%);
 }
 
 .n-popup {
@@ -42,15 +41,22 @@
     --popup-bg-color: var(--color-black);
     --popup-border-color: var(--color-black);
     --popup-shadow: var(--box-shadow-s);
+    --popup-text-color: var(--color-white);
 
     width: auto;
-    color: var(--color-white);
-    font-size: var(--text-s);
+    color: var(--popup-text-color);
     text-align: center;
-    backround-image: var(--tooltip-gradient);
 
     .n-popup__content {
-      padding: 8px;
+      padding: var(--space-s) var(--space-m);
+    }
+
+    @each $name in $palettes {
+      &.color-#{$name} {
+        --popup-bg-color: var(--color-#{$name});
+        --popup-border-color: var(--color-#{$name}-darken);
+        --popup-text-color: var(--color-#{$name}-invert);
+      }
     }
   }
 
