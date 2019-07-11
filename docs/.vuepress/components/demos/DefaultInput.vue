@@ -9,7 +9,7 @@
         </n-control>
 
         <n-control col md:4 sm:12>
-            <n-popup placement="bottom-end" size="auto" slot="prefixIcon">
+            <n-popup placement="bottom-start" size="auto" slot="prefixIcon">
                 <div slot="trigger">
                     <n-icon icon="fab fa-facebook-f"></n-icon>
                     <n-icon icon="fas fa-chevron-down fa-xs"></n-icon>
