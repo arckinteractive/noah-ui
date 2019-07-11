@@ -87,6 +87,13 @@ export default {
         indeterminate: {
             type: Boolean,
         },
+
+        /**
+         * In case option is an object, this can be used to correctly compare items to determine if checkbox is checked
+         */
+        valueProp: {
+            type: String,
+        },
     },
 
     computed: {
@@ -114,11 +121,19 @@ export default {
                 return true;
             }
 
+            const isMatch = (e) => {
+                if (this.valueProp) {
+                    return e[this.valueProp] === this.option[this.valueProp];
+                }
+
+                return e === this.option;
+            };
+
             if (Array.isArray(this.inputValue)) {
-                return this.inputValue.indexOf(this.option) > -1;
+                return !!this.inputValue.find(isMatch);
             }
 
-            return this.inputValue === this.option;
+            return isMatch(this.inputValue);
         },
     },
 

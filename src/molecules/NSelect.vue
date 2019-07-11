@@ -119,6 +119,7 @@
                                             v-model="internalValue"
                                             :option="option"
                                             :label="option[labelProp]"
+                                            :valueProp="valueProp"
                                         >
                                             <slot
                                                 name="suggestion"
@@ -150,6 +151,10 @@
                             </n-list>
 
                             <template v-else>
+                                <n-tile v-if="awaiting" :title="`Searching for ${searchKeyword}`">
+                                    <n-div slot="icon" spinner size="xsmall"></n-div>
+                                </n-tile>
+
                                 <n-div v-if="!awaiting" padding="medium">
                                     <template v-if="searchKeyword">
                                         There are no options matching the criteria
@@ -176,6 +181,7 @@
 import Styling from '../mixins/Styling';
 import Input from '../mixins/Input';
 import ClickOutside from 'vue-click-outside';
+import debounce from 'lodash.debounce';
 
 export default {
     mixins: [Input, Styling],
@@ -207,6 +213,7 @@ export default {
             searchKeyword: '',
             internalOptions: [],
             internalValue: this.value,
+            resolved: false,
         };
     },
 
@@ -302,7 +309,12 @@ export default {
 
     methods: {
         async resolveOptions () {
+            if (this.resolved) {
+                return this.internalOptions;
+            }
+
             if (Array.isArray(this.options)) {
+                this.resolved = true;
                 this.internalOptions = this.options;
 
                 return Promise.resolve(this.internalOptions);
@@ -314,6 +326,7 @@ export default {
             return Promise.resolve(this.options(this.searchKeyword)).then((options) => {
                 this.internalOptions = options;
                 this.awaiting = false;
+                this.resolved = true;
 
                 return options;
             }).catch(this.$log);
@@ -396,8 +409,17 @@ export default {
             },
         },
 
-        searchKeyword () {
-            this.resolveOptions();
+        searchKeyword: {
+            handler: debounce(function () {
+                this.resolved = false;
+            }, 300),
+        },
+
+        resolved: {
+            immediate: true,
+            handler () {
+                this.resolveOptions();
+            },
         },
     },
 };

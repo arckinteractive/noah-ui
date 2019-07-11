@@ -60,7 +60,7 @@ export default {
                     resolve(countries.filter((e) => {
                         return this.isMatch(e, keyword);
                     }));
-                }, 400);
+                }, 800);
             });
         },
 
