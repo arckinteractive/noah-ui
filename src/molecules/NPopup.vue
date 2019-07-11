@@ -164,8 +164,6 @@ export default {
 
     mounted () {
         this.resolveTriggerEl();
-
-        console.log(this);
     },
 
     updated () {
