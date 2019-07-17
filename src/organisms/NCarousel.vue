@@ -133,7 +133,7 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '../../node_modules/tiny-slider/src/tiny-slider';
+    @import 'tiny-slider/src/tiny-slider.scss';
 </style>
 
 <style scoped lang="scss">

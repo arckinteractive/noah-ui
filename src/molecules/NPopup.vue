@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-click-outside="close">
         <n-div
             v-if="$slots.trigger"
-            @click.native.stop="handleClick"
+            @click.native="handleClick"
             @mouseenter.native="handleMouseenter"
             @mouseleave.native="handleMouseleave"
             @touchstart.native="handleMouseenter"
@@ -18,7 +18,6 @@
                 v-if="triggerEl"
                 v-show="isVisible"
                 v-bind="filteredAttrs"
-                v-click-outside="close"
                 tabindex="0"
                 ref="popup"
             >
@@ -165,8 +164,6 @@ export default {
 
     mounted () {
         this.resolveTriggerEl();
-
-        console.log(this);
     },
 
     updated () {
@@ -194,6 +191,7 @@ export default {
                 config.placement = this.resolveForViewport(this.placement);
                 config.modifiers.flip = { enabled: false };
                 config.modifiers.preventOverflow = { enabled: false };
+                config.modifiers.hide = { enabled: false };
             } else {
                 config.placement = this.placement;
             }

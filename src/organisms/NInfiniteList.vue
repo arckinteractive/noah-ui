@@ -10,13 +10,14 @@
         </transition-group>
 
         <n-div
+            v-if="hasMore"
             :class="config.children.paginator"
             flex
             center-center
             padding-y="medium"
             @click.native="loadMore"
         >
-            <slot v-if="hasMore" name="paginator">
+            <slot name="paginator">
                 <n-button
                     outlined
                     text="Load More"
@@ -48,7 +49,6 @@ export default {
                     },
                 },
             },
-            currentPage: 1,
             pageSize: this.perPage,
             repeated: 0,
         };
@@ -108,7 +108,7 @@ export default {
 
     computed: {
         hasMore () {
-            return this.total > this.pageSize * this.currentPage;
+            return this.total > this.items.length;
         },
 
         componentStates () {
@@ -125,10 +125,7 @@ export default {
         loadMore (options) {
             this.$emit('load', Object.assign({
                 pageSize: this.pageSize,
-                currentPage: this.currentPage,
             }, options));
-
-            this.currentPage++;
         },
 
         rebuildObserver () {

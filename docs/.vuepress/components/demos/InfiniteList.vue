@@ -28,17 +28,12 @@
 const getRemoteData = (filter) => {
     const {
         pageSize,
-        currentPage,
-        sortProperty,
-        sortOrder,
-        search,
+        offset,
     } = filter;
 
     return new Promise((resolve) => {
         setTimeout(() => {
             const data = require('../../fixtures/countries');
-
-            const offset = pageSize * (currentPage - 1);
 
             const countries = data.slice(offset, pageSize + offset);
 
@@ -64,7 +59,10 @@ export default {
         load (props) {
             this.loading = true;
 
-            getRemoteData(props).then((data) => {
+            getRemoteData({
+                pageSize: props.pageSize,
+                offset: this.items.length,
+            }).then((data) => {
                 this.items.push(...data.items);
                 this.total = data.total;
 

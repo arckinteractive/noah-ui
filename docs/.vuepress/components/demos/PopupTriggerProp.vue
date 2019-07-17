@@ -14,7 +14,7 @@
             v-model="visible"
             :trigger="trigger"
             :configCallback="configCallback"
-            :placement="{ sm: 'bottom-end', lg: 'bottom' }"
+            :placement="{ sm: 'bottom-start', lg: 'bottom' }"
             small
         >
             <n-div padding="small">

@@ -16,12 +16,10 @@ export default {
         data.openOnClick = false;
         data.trigger = el;
 
-        const attributes = Object.assign({}, {
+        data.stylingAttrs = Object.assign({}, {
             color: 'black',
             textSize: 'small',
         }, data.attrs || {});
-
-        delete data.attrs;
 
         import('../molecules/NPopup').then((PopupComponent) => {
             const Constructor = vnode.context.Vue.extend(PopupComponent.default);
@@ -31,8 +29,6 @@ export default {
             });
 
             const vm = instance.$mount();
-
-            vm.$attrs = attributes;
 
             vnode.context.$root.$el.appendChild(instance.$el);
 

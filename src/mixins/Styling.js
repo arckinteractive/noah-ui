@@ -21,6 +21,15 @@ const dashifyAttrName = (name) => {
 export default {
     inheritAttrs: false,
 
+    props: {
+        stylingAttrs: {
+            type: Object,
+            default () {
+                return {};
+            },
+        },
+    },
+
     computed: {
         config () {
             const { name = '', config = {} } = this.localConfig || {};
@@ -34,7 +43,7 @@ export default {
 
         filteredAttrs () {
             const attrs = this.filterAttrClasses({
-                attrs: this.$attrs,
+                attrs: { ...this.$attrs, ...this.stylingAttrs },
                 config: {
                     modifierPrefix: this.config.modifierPrefix || '',
                     whitelist: this.$config.style.whitelist || [],
