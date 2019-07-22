@@ -104,7 +104,7 @@ export default {
                     nav: this.dots,
                     navPosition: 'bottom',
                     autoplay: this.autoplay > 0,
-                    autoplayTimeout: parseInt(this.autoplay, 10) / 1000,
+                    autoplayTimeout: parseInt(this.autoplay, 10) * 1000,
                 });
 
                 this.$slider = module.tns(options);
