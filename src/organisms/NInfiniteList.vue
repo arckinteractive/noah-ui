@@ -4,7 +4,7 @@
             name="expand"
             v-bind="filteredAttrs"
         >
-            <div v-for="(item, index) in items" :key="index">
+            <div v-for="(item, index) in items" :key="`child-${index}`">
                 <slot name="item" v-bind="{ item, index }"></slot>
             </div>
         </transition-group>
