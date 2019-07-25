@@ -301,7 +301,7 @@ textarea {
   --input-text: var(--field-text, var(--text-m));
   --input-size: var(--field-size, var(--size-m));
   --input-space: calc(var(--input-size) - var(--input-line-height));
-  --select-min-width: 300px;
+  --select-min-width: 240px;
 
   position: relative;
   padding: 0;
