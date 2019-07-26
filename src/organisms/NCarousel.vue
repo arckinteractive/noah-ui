@@ -114,11 +114,12 @@ export default {
         });
     },
 
-    destroyed () {
-        if (this.$slider) {
-            this.$slider.destroy();
-        }
-    },
+    // @todo: This is causing issues in nuxt. Investigate why
+    // destroyed () {
+    //     if (this.$slider) {
+    //         this.$slider.destroy();
+    //     }
+    // },
 
     computed: {
         /**
