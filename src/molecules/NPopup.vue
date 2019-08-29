@@ -185,7 +185,7 @@ export default {
         },
 
         popperConfig () {
-            const config = Object.assign({}, this.config.popper);
+            const config = { ...this.config.popper };
 
             if (typeof this.placement === 'object') {
                 config.placement = this.resolveForViewport(this.placement);

@@ -123,9 +123,7 @@ export default {
 
     methods: {
         loadMore (options) {
-            this.$emit('load', Object.assign({
-                pageSize: this.pageSize,
-            }, options));
+            this.$emit('load', { pageSize: this.pageSize, ...options });
         },
 
         rebuildObserver () {

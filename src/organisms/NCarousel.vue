@@ -95,7 +95,8 @@ export default {
     mounted () {
         this.$nextTick(() => {
             import('tiny-slider/src/tiny-slider.js').then((module) => {
-                const options = Object.assign({}, this.options || {}, {
+                const options = {
+                    ...this.options || {},
                     container: this.$refs.track.$el,
                     controls: this.arrows,
                     nextButton: this.arrows ? this.$refs.next.$el : null,
@@ -104,8 +105,8 @@ export default {
                     nav: this.dots,
                     navPosition: 'bottom',
                     autoplay: this.autoplay > 0,
-                    autoplayTimeout: parseInt(this.autoplay, 10) * 1000,
-                });
+                    autoplayTimeout: parseInt(this.autoplay, 10) * 1000, 
+                };
 
                 this.$slider = module.tns(options);
 

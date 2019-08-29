@@ -160,13 +160,14 @@ export default {
 
     methods: {
         reload (options, scroll = true) {
-            this.$emit('reload', Object.assign({
+            this.$emit('reload', {
                 pageSize: this.pageSize,
                 currentPage: this.currentPage,
                 sortProperty: this.sortProperty,
                 sortOrder: this.sortOrder,
                 search: this.search,
-            }, options));
+                ...options, 
+            });
 
             if (scroll) {
                 this.$nextTick(() => {

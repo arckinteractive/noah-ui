@@ -58,7 +58,7 @@ export default {
 
     methods: {
         prepareTab (item) {
-            const tab = Object.assign({}, item);
+            const tab = { ...item };
             const { target } = tab;
 
             tab.click = () => {

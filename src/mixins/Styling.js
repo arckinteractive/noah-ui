@@ -34,11 +34,11 @@ export default {
         config () {
             const { name = '', config = {} } = this.localConfig || {};
 
-            return Object.assign(
-                {},
-                config,
-                this.$config.components[name] || {},
-            );
+            return {
+                
+                ...config,
+                ...this.$config.components[name] || {},
+            };
         },
 
         filteredAttrs () {
@@ -47,12 +47,12 @@ export default {
                 config: {
                     modifierPrefix: this.config.modifierPrefix || '',
                     whitelist: this.$config.style.whitelist || [],
-                    classMap: Object.assign({}, this.$config.style.classMap || {}, this.config.classMap || {}),
+                    classMap: { ...this.$config.style.classMap || {}, ...this.config.classMap || {} },
                     viewports: this.$config.viewport.names || {},
                 },
             });
 
-            attrs.class = Object.assign({}, attrs.class, this.componentClasses);
+            attrs.class = { ...attrs.class, ...this.componentClasses };
 
             return attrs;
         },
@@ -108,7 +108,7 @@ export default {
         },
 
         filterAttrClasses ({ attrs, config }) {
-            const attributes = Object.assign({}, attrs);
+            const attributes = { ...attrs };
             const classes = [];
 
             const addModifier = (modifier) => {
