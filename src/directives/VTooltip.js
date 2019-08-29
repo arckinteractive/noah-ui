@@ -16,10 +16,11 @@ export default {
         data.openOnClick = false;
         data.trigger = el;
 
-        data.stylingAttrs = Object.assign({}, {
+        data.stylingAttrs = {
             color: 'black',
             textSize: 'small',
-        }, data.attrs || {});
+            ...data.attrs || {}, 
+        };
 
         import('../molecules/NPopup').then((PopupComponent) => {
             const Constructor = vnode.context.Vue.extend(PopupComponent.default);
