@@ -7,22 +7,25 @@
         gap="xsmall"
         center-center
     >
-        <n-button
-            v-for="(item, index) in items"
-            :key="`${index}-${item.pageIndex}`"
-            :class="item.classes"
-            @click.prevent="item.click"
-            circle
-            ghost
-        >
-            <template v-if="item.icon">
-                <i :class="item.icon"></i>
-            </template>
+        <template v-for="(item, index) in items">
+            <slot name="item" v-bind="{item}">
+                <n-button
+                    :key="`${index}-${item.pageIndex}`"
+                    :class="item.classes"
+                    @click.prevent="item.click"
+                    circle
+                    ghost
+                >
+                    <template v-if="item.icon">
+                        <i :class="item.icon"></i>
+                    </template>
 
-            <template v-else>
-                <span>{{ item.pageIndex }}</span>
-            </template>
-        </n-button>
+                    <template v-else>
+                        <span>{{ item.pageIndex }}</span>
+                    </template>
+                </n-button>
+            </slot>
+        </template>
     </n-div>
 </template>
 
