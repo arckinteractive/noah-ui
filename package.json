@@ -16,7 +16,7 @@
     "codemirror": "^5.48.0",
     "core-js": "^2.6.9",
     "lodash.debounce": "^4.0.8",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "popper.js": "^1.15.0",
     "raw-loader": "^2.0.0",
     "svg-country-flags": "^1.2.6",
